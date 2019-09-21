@@ -6,12 +6,13 @@ The Front End React App for the Lambda School Replate Build Weeks Project Septem
 
 <ol>
   <li>An on-boarding process for a volunteer</li>
-  <li>On-boarding process for a business, and a homepage for a business</li>
-  <li> Ability to easily create / setup a request for food pick up (including how much food, type of food)</li>
-  <li>Ability to easily edit / delete a request</li>
-  <li>Ability to easily search / find all local businesses that have signed up, and all requests that have been posted that day</li>
-  <li>Ability for a volunteer to accept a request.</li>
-  <li>Allow volunteers to be notified when a need is posted.  Have a third user type, a non profit that can sign up to accept deliveries with posted hours of acceptance.</li>
+  <li>On-boarding process for a business, and a homepage for a restaurant</li>
+  <li> Ability to easily create a food pickup request (including how much food, type of food)</li>
+  <li>Ability to easily edit / delete a food pickup request</li>
+  <li>Ability to easily search / find all local restaurants that have signed up, and all requests that have been posted that day</li>
+  <li>Ability for a volunteer to accept a food pickup request.</li>
+  <li>Allow volunteers to be notified when a food pickup request is posted.</li>
+  <li>Have a third user type, a non profit that can sign up to accept deliveries with posted hours of acceptance.</li>
 </ol>
 
 <a href=https://balsamiq.cloud/snv27r3/psx8jkn target="_blank">React App Potential Design File</a>
