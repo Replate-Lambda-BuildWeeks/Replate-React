@@ -14,7 +14,7 @@ const ModifyPickupForm = props => {
                 <h1 className='pickup-form__header'>Schedule A Pickup</h1>
                 <div className='pickup-form__fields'>
         
-                <Field  type='text' name='name' placeholder='Enter name' />
+                <Field type='text' name='name' placeholder='Enter name' />
         
                 <Field type='text'  name='date' placeholder='Enter date' />
         

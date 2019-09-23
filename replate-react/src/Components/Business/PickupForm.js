@@ -3,11 +3,7 @@ import { withFormik, Form, Field } from "formik";
 
 
 
-
-
-
 const PickupForm = () => {
-
 
     return(
         <div className='new-pickup__modal'>
@@ -16,7 +12,7 @@ const PickupForm = () => {
                 <h1 className='pickup-form__header'>Schedule A Pickup</h1>
                 <div className='pickup-form__fields'>
         
-                <Field  type='text' name='name' placeholder='Enter name' />
+                <Field type='text' name='name' placeholder='Enter name' />
         
                 <Field type='text'  name='date' placeholder='Enter date' />
         
