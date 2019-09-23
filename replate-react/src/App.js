@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
-import VolOnboardForm from "./Components/VolunteerCreateAccount"
+import BusOnboardForm from "./Components/BusinessCreateAccount"
 
 function App() {
   return (
     <div className="App">
       <h1>App Test</h1>
-      {/* <VolOnboardForm/> */}
+      <BusOnboardForm/>
     </div>
   );
 }
