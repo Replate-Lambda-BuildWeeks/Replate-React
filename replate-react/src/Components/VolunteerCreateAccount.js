@@ -21,7 +21,7 @@ const VolOnboardForm = ({ values, errors, status, validateForm }) => {
     if (status) {
       setVolunteer([...volunteer, status]);
     }
-  }, [volunteer]);
+  }, [volunteer, status]);
 
   return (
     <div>
@@ -30,8 +30,9 @@ const VolOnboardForm = ({ values, errors, status, validateForm }) => {
         <div>
           <div>
             <label>First Name</label>
-            <Field type="text" name="firstName" />
+            <Field type="text" name="firstName"  initial-value="" placeholder={errors.firstName}/>
             {errors.firstName && <p className="errors">{errors.firstName}</p>}
+            {/* So value="" placeholder={this.state.error} */}
           </div>
           <div>
             <label>Last Name</label>

@@ -26,3 +26,8 @@
   margin: 0 auto;
   font-size: .8rem;
 }
+
+.pickupCard{
+  border: 1px solid black;
+  display: flex;
+}

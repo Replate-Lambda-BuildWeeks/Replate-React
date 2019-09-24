@@ -23,9 +23,9 @@ const BusOnboardForm = ({ values, errors, status, validateForm }) => {
             <Field
               type="text"
               name="name"
-            //   value=""
-            //   placeholder="" || {errors.name}
-            //   className="errors"
+              value=""
+              placeholder={errors.name}
+              className="errors"
             />
             {errors.name && <p className="errors">{errors.name}</p>}
           </div>
