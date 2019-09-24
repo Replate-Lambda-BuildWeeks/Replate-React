@@ -2,12 +2,17 @@ import React from 'react';
 import './App.css';
 import BusOnboardForm from "./Components/BusinessCreateAccount"
 import PickupForm from './Components/Business/PickupForm';
-
+import { Route } from 'react-router-dom';
+// import Private from './components/PrivateRoute';
+import Login from './components/Login';
+import Home from '../../src/pages/Home';
 
 function App() {
 
   return(
     <div className="App">
+      <Home />
+      <Route exact path="/login" render={props => <Login {...props} />} />
       <PickupForm/>
       <BusOnboardForm/>
     </div>
