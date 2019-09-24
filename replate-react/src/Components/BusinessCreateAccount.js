@@ -3,40 +3,53 @@ import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 
-// function validatePhone(value){
-//     let error;
-//     if(!value) {
-//         error="Required field";
-//     } else if (!/^[2-9]\d{2}-\d{3}-\d{4}$/i.test(value)) {
-//         error="Enter phone in the following format: xxx-xxx-xxxx";
-//     }
-//     return error;
-// }
-
-const VolOnboardForm = ({ values, errors, status, validateForm }) => {
-  const [volunteer, setVolunteer] = useState([]);
+const BusOnboardForm = ({ values, errors, status, validateForm }) => {
+  const [business, setBusiness] = useState([]);
 
   //sets
   useEffect(() => {
     if (status) {
-      setVolunteer([...volunteer, status]);
+      setBusiness([...business, status]);
     }
-  }, [volunteer]);
+  }, [business, status]);
 
   return (
     <div>
       <Form>
-        <h2>Create Volunteer Account</h2>
+        <h2>Create Business Account</h2>
         <div>
           <div>
-            <label>First Name</label>
-            <Field type="text" name="firstName" />
-            {errors.firstName && <p className="errors">{errors.firstName}</p>}
+            <label>Business Name</label>
+            <Field
+              type="text"
+              name="name"
+            //   value=""
+            //   placeholder="" || {errors.name}
+            //   className="errors"
+            />
+            {errors.name && <p className="errors">{errors.name}</p>}
           </div>
           <div>
-            <label>Last Name</label>
-            <Field type="text" name="lastName" />
-            {errors.lastName && <p className="errors">{errors.lastName}</p>}
+            <label>Contact Name</label>
+            <Field type="text" name="name" />
+            {errors.contactName && (
+              <p className="errors">{errors.contactName}</p>
+            )}
+          </div>
+          <div>
+            <label>Street Address</label>
+            <Field type="text" name="address" />
+            {errors.address && <p className="errors">{errors.address}</p>}
+          </div>
+          <div>
+            <label>City</label>
+            <Field type="text" name="city" />
+            {errors.city && <p className="errors">{errors.city}</p>}
+          </div>
+          <div>
+            <label>Zip</label>
+            <Field type="text" name="zip" />
+            {errors.zip && <p className="errors">{errors.zip}</p>}
           </div>
           <div>
             <label>Phone</label>
@@ -44,7 +57,7 @@ const VolOnboardForm = ({ values, errors, status, validateForm }) => {
               type="text"
               name="phone"
               placeholder="xxx-xxx-xxxx"
-            //   validate={validatePhone}
+              //   validate={validatePhone}
             />
             {errors.phone && <p className="errors">{errors.phone}</p>}
           </div>
@@ -77,18 +90,24 @@ const VolOnboardForm = ({ values, errors, status, validateForm }) => {
   );
 };
 
-const FormikVolOnboardForm = withFormik({
+const FormikBusOnboardForm = withFormik({
   mapPropsToValues({
-    firstName,
-    lastName,
+    name,
+    contactName,
+    address,
+    city,
+    zip,
     phone,
     email,
     password,
     confirmPassword
   }) {
     return {
-      firstName: firstName || "",
-      lastName: lastName || "",
+      name: name || "",
+      contactName: contactName || "",
+      address: address || "",
+      city: city || "",
+      zip: zip || "",
       phone: phone || "",
       email: email || "",
       password: password || "",
@@ -97,8 +116,11 @@ const FormikVolOnboardForm = withFormik({
   },
 
   validationSchema: Yup.object().shape({
-    firstName: Yup.string().required("*Required field"),
-    lastName: Yup.string().required("*Required field"),
+    name: Yup.string().required("*Required field"),
+    contactName: Yup.string().required("*Required field"),
+    address: Yup.string().required("*Required field"),
+    zip: Yup.string().required("*Required field"),
+    city: Yup.string().required("*Required field"),
     phone: Yup.string().required("*Required field"),
     email: Yup.string()
       .email("Invalid email")
@@ -112,10 +134,10 @@ const FormikVolOnboardForm = withFormik({
       .post("https://reqres.in/api/users", values)
       .then(res => {
         setStatus(res.data);
-        console.log("VolOnboardForm POST request success:", res);
+        console.log("BusOnboardForm POST request success:", res);
       })
       .catch(err => console.log(err.res));
   }
-})(VolOnboardForm);
+})(BusOnboardForm);
 
-export default FormikVolOnboardForm;
+export default FormikBusOnboardForm;

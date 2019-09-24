@@ -1,14 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import BusOnboardForm from "./Components/BusinessCreateAccount"
 import PickupForm from './Components/Business/PickupForm';
 
 
 function App() {
 
   return(
-    <PickupForm/>
+    <div className="App">
+      <PickupForm/>
+      <BusOnboardForm/>
+    </div>
   )
+}
+
+export default App;
+
   // return (
   //   <div className="App">
   //     <header className="App-header">
@@ -27,6 +34,3 @@ function App() {
   //     </header>
   //   </div>
   // );
-}
-
-export default App;
