@@ -21,15 +21,16 @@ const Login = props => {
   const onSubmit = e => {
     e.preventDefault();
     axiosWithAuth()
-      .post('/login', user)
-      .then(response => {
+      .post('/auth/login', user)
+      .then(res => {
+        console.log(res);
         //sets token to local storage.
-        localStorage.setItem('token', response.data.payload);
-        // forwards the user to the profile page using the formikBag props
-        props.history.push('/dashboard');
+        localStorage.setItem('token', res.data.token);
+        // forwards the user to the profile page using the  props
+        props.history.push('/business-onboard');
       })
       .catch(err => {
-        console.log(err.response.data);
+        console.log(err);
       });
     // console.log(values);
   };
