@@ -3,7 +3,7 @@ import { withFormik, Form, Field } from "formik";
 
 
 
-const PickupForm = () => {
+const PickupForm = props => {
 
     return(
         <div className='new-pickup__modal'>

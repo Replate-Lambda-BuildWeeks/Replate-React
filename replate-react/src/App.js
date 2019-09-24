@@ -7,7 +7,7 @@ import PickupForm from './Components/Business/PickupForm';
 function App() {
 
   return(
-    <PickupForm />
+    <PickupForm/>
   )
   // return (
   //   <div className="App">
