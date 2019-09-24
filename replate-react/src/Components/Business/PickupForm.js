@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { withFormik, Form, Field } from "formik";
+import * as Yup from 'yup';
+
 
 
 
@@ -39,7 +41,15 @@ const FormikPickupForm = withFormik({
             amount: amount || '',
             type: type || ''
         }
-    }
+    },
+    validationSchema : Yup.object().shape({
+        name: Yup.string().required('You cannot pass!!!'),
+		date: Yup.string().required('You cannot pass!!!'),
+        time: Yup.string().required('Cannot pass'),
+        amount: Yup.string().required('You cannot pass!!!'),
+        quantity: Yup.string().required('You cannot pass!!!'),
+        type: Yup.string().required('You cannot pass!!!'),
+	}),
 })(PickupForm)
 
 export default PickupForm;
