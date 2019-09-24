@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { withFormik, Form, Field } from "formik";
+import React from "react";
+import { withFormik, Form, Field, } from "formik";
 import * as Yup from 'yup';
-
-
 
 
 const PickupForm = props => {
@@ -25,8 +23,8 @@ const PickupForm = props => {
                 <Field type='text' name='type' placeholder='Enter type of food' />
 
                 </div>
-                <button type='submit'>Update</button>
-                </div>
+                <button type='submit'>Submit</button> 
+                 </div> 
 
             </Form>
         </div>
@@ -42,14 +40,14 @@ const FormikPickupForm = withFormik({
             type: type || ''
         }
     },
-    validationSchema : Yup.object().shape({
-        name: Yup.string().required('You cannot pass!!!'),
-		date: Yup.string().required('You cannot pass!!!'),
-        time: Yup.string().required('Cannot pass'),
-        amount: Yup.string().required('You cannot pass!!!'),
-        quantity: Yup.string().required('You cannot pass!!!'),
-        type: Yup.string().required('You cannot pass!!!'),
-	}),
+//     validationSchema : Yup.object().shape({
+//         name: Yup.string().required(),
+// 		date: Yup.string().required(),
+//         time: Yup.string().required(),
+//         amount: Yup.string().required(),
+//         quantity: Yup.string().required(),
+//         type: Yup.string().required(),
+// 	}),
 })(PickupForm)
 
-export default PickupForm;
+export default FormikPickupForm;
