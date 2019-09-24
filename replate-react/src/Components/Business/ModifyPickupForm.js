@@ -11,7 +11,7 @@ const ModifyPickupForm = props => {
         <div className='new-pickup__modal'>
             <Form className='pickup-form'>
                 <div className='form-content'>
-                <h1 className='pickup-form__header'>Schedule A Pickup</h1>
+                <h1 className='pickup-form__header'>Modify Your Pickup</h1>
                 <div className='pickup-form__fields'>
         
                 <Field type='text' name='name' placeholder='Enter name' />
