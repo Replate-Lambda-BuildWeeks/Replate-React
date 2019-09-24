@@ -4,8 +4,8 @@ import BusOnboardForm from "./Components/BusinessCreateAccount"
 import PickupForm from './Components/Business/PickupForm';
 import { Route } from 'react-router-dom';
 // import Private from './components/PrivateRoute';
-import Login from './components/Login';
-import Home from '../../src/pages/Home';
+import Login from './Components/Login';
+import Home from './pages/Home';
 
 function App() {
 
@@ -13,7 +13,7 @@ function App() {
     <div className="App">
       <Home />
       <Route exact path="/login" render={props => <Login {...props} />} />
-      <PickupForm/>
+      {/* <PickupForm/> */}
       <BusOnboardForm/>
     </div>
   )
