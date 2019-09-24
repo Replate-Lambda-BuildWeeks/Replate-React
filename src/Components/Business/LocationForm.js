@@ -2,12 +2,21 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Form, Field, withFormik } from 'formik';
 // import axios from 'axios';
 import * as Yup from 'yup';
+import UserContext from '../../contexts/UserContext';
 
 const LocationForm = props => {
 
+    const { status } = props;
+
+    const { setLocations } = useContext(UserContext)
+
+    const id = props.match.params.id;
 
     const { errors, touched } = props;
 
+    useEffect(() => {
+        status && setLocations(locations => [...locations, status])
+    }, [status])
 
     return(
         <div className='new-pickup__modal'>

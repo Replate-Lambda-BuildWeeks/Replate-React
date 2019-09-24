@@ -1,11 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { withFormik, Form, Field } from "formik";
-
-
+import UserContext from "../../contexts/UserContext";
+// import axios from "axios";
 
 
 const ModifyPickupForm = props => {
 
+    const id = props.match.params.id;
+
+    const [locations, setLocations] = useState([]);
+  
+    const { appToEdit } = useContext(UserContext)
+
+    // useEffect(() => {
+    //     axios
+    //       .get("")
+    //       .then(res => {
+    //         console.log(res.data);
+    //         setLocations(res.data);
+    //       })
+    //       .catch(err => console.log(err));
+    //   }, []);
 
     return(
         <div className='new-pickup__modal'>
