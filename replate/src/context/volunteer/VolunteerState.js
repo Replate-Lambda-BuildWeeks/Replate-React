@@ -12,8 +12,28 @@ import {
   CLEAR_CURRENT
 } from '../types';
 
-const VolunteerState = () => {
-  return <div></div>;
+const VolunteerState = props => {
+  const initialState = {
+    volunteers: [],
+    volunteer: {}
+  };
+
+  const [state, dispatch] = useReducer(VolunteerReducer, initialState);
+
+  // create volunteer
+
+  // get volunteer
+
+  return (
+    <VolunteerContext
+      value={{
+        volunteers: state.volunteers,
+        volunteer: state.volunteer
+      }}
+    >
+      {props.children}
+    </VolunteerContext>
+  );
 };
 
 export default VolunteerState;

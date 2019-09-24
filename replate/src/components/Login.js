@@ -20,12 +20,12 @@ const Login = props => {
   const onSubmit = e => {
     e.preventDefault();
     axiosWithAuth()
-      .post('/login', user)
+      .post('/auth/login', user)
       .then(response => {
         //sets token to local storage.
         localStorage.setItem('token', response.data.payload);
         // forwards the user to the profile page using the formikBag props
-        props.history.push('/dashboard');
+        props.history.push('/');
       })
       .catch(err => {
         console.log(err.response.data);
