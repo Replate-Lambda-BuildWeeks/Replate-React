@@ -11,6 +11,7 @@ function App() {
   return (
     <div className="App">
       {/* <Home /> */}
+
       <Route exact path="/" render={props => <Login {...props} />} />
       {/* <PickupForm/> */}
       <Private exact path="/business-onboard" component={BusOnboardForm} />
