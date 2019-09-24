@@ -8,8 +8,6 @@ const LocationForm = props => {
 
     const { status } = props;
 
-    const { setLocations } = useContext(UserContext)
-
     const id = props.match.params.id;
 
     const { errors, touched } = props;

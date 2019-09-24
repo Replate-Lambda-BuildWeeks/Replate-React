@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { withFormik, Form, Field } from "formik";
-import UserContext from "../../contexts/UserContext";
+
 // import axios from "axios";
 
 
@@ -10,8 +10,7 @@ const ModifyPickupForm = props => {
 
     const [locations, setLocations] = useState([]);
   
-    const { appToEdit } = useContext(UserContext)
-
+    
     // useEffect(() => {
     //     axios
     //       .get("")
