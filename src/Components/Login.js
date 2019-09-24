@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
+import Logo from '../../src/logo.png';
 import { Link } from 'react-router-dom';
 
 //adding the useState hook to add component level state
@@ -35,11 +36,9 @@ const Login = props => {
 
   return (
     <div className="login-form">
-      <h1 className="login-header">
-        <span className="">Replate</span>
-      </h1>
+      <img src={Logo} alt="replate logo" />
 
-      <form onSubmit={onSubmit} className="container">
+      <form onSubmit={onSubmit} className="container form-width">
         <div className="form-group">
           <input
             className="form-control"
