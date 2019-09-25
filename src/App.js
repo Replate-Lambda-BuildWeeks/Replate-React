@@ -1,7 +1,8 @@
 import React from 'react';
 import './App.css';
-import BusOnboardForm from "./Components/BusinessCreateAccount"
 import PickupForm from './Components/Business/PickupForm';
+import UserType from "./Components/CreateAccount"
+import VolunteerDashboard from "./Components/VolunteerDashboard/VolunteerDashboard"
 import { Route } from 'react-router-dom';
 // import Private from './components/PrivateRoute';
 import Login from './Components/Login';
@@ -14,7 +15,7 @@ function App() {
       <Home />
       <Route exact path="/login" render={props => <Login {...props} />} />
       {/* <PickupForm/> */}
-      <BusOnboardForm/>
+      <VolunteerDashboard/>
     </div>
   )
 }

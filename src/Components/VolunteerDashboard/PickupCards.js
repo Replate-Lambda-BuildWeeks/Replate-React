@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardTitle, CardSubtitle, Button } from "reactstrap";
 
-export default function AvailablePickups ({
+export default function PickupCards ({
 name,
 date,
 time,
