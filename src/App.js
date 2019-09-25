@@ -1,11 +1,12 @@
 import React from 'react';
 import './App.css';
 import BusOnboardForm from './Components/BusinessCreateAccount';
+import VolunteerCreateAccount from '../src/Components/VolunteerCreateAccount';
 // import PickupForm from './Components/Business/PickupForm';
+// import Home from './pages/Home';
 import { Route } from 'react-router-dom';
 import Private from '../src/utils/PrivateRoute';
 import Login from './Components/Login';
-// import Home from './pages/Home';
 
 function App() {
   return (
@@ -13,8 +14,15 @@ function App() {
       {/* <Home /> */}
 
       <Route exact path="/" render={props => <Login {...props} />} />
-      {/* <PickupForm/> */}
+
+      {/* <PickupForm /> */}
       <Private exact path="/business-onboard" component={BusOnboardForm} />
+
+      <Private
+        exact
+        path="/volunteer-onboard"
+        component={VolunteerCreateAccount}
+      />
     </div>
   );
 }

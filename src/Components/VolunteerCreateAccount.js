@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { withFormik, Form, Field } from "formik";
-import * as Yup from "yup";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import { withFormik, Form, Field } from 'formik';
+import * as Yup from 'yup';
+import axios from 'axios';
 
 // function validatePhone(value){
 //     let error;
@@ -21,7 +21,7 @@ const VolOnboardForm = ({ values, errors, status, validateForm }) => {
     if (status) {
       setVolunteer([...volunteer, status]);
     }
-  }, [volunteer]);
+  }, [volunteer, status]);
 
   return (
     <div>
@@ -44,7 +44,7 @@ const VolOnboardForm = ({ values, errors, status, validateForm }) => {
               type="text"
               name="phone"
               placeholder="xxx-xxx-xxxx"
-            //   validate={validatePhone}
+              //   validate={validatePhone}
             />
             {errors.phone && <p className="errors">{errors.phone}</p>}
           </div>
@@ -68,7 +68,7 @@ const VolOnboardForm = ({ values, errors, status, validateForm }) => {
         </div>
         <button
           type="submit"
-          onClick={() => validateForm().then(() => console.log("blah"))}
+          onClick={() => validateForm().then(() => console.log('blah'))}
         >
           Submit
         </button>
@@ -87,32 +87,32 @@ const FormikVolOnboardForm = withFormik({
     confirmPassword
   }) {
     return {
-      firstName: firstName || "",
-      lastName: lastName || "",
-      phone: phone || "",
-      email: email || "",
-      password: password || "",
-      confirmPassword: confirmPassword || ""
+      firstName: firstName || '',
+      lastName: lastName || '',
+      phone: phone || '',
+      email: email || '',
+      password: password || '',
+      confirmPassword: confirmPassword || ''
     };
   },
 
   validationSchema: Yup.object().shape({
-    firstName: Yup.string().required("*Required field"),
-    lastName: Yup.string().required("*Required field"),
-    phone: Yup.string().required("*Required field"),
+    firstName: Yup.string().required('*Required field'),
+    lastName: Yup.string().required('*Required field'),
+    phone: Yup.string().required('*Required field'),
     email: Yup.string()
-      .email("Invalid email")
-      .required("*Required field"),
-    password: Yup.string().required("*Required field"),
-    confirmPassword: Yup.string().required("*Required field")
+      .email('Invalid email')
+      .required('*Required field'),
+    password: Yup.string().required('*Required field'),
+    confirmPassword: Yup.string().required('*Required field')
   }),
 
   handleSubmit(values, { setStatus }) {
     axios
-      .post("https://reqres.in/api/users", values)
+      .post('http://0bbfee1e.ngrok.io/auth/login', values)
       .then(res => {
         setStatus(res.data);
-        console.log("VolOnboardForm POST request success:", res);
+        console.log('VolOnboardForm POST request success:', res);
       })
       .catch(err => console.log(err.res));
   }

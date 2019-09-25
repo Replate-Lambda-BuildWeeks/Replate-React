@@ -68,7 +68,7 @@ const Login = props => {
         <input type="submit" value="Sign in" className="btn btn-success" />
       </form>
       <p>Don't have an account?</p>
-      <Link to="/register">Sign Up</Link>
+      <Link to="/volunteer-onboard">Sign Up</Link>
     </div>
   );
 };
