@@ -28,7 +28,7 @@ const BusinessDashboard = () => {
             <div className="week-schedule">
                 <div className="day-schedule">
                     <div className='day-schedule__date'>September 23, 2019</div>
-                {/* map over appointments here */}
+               
                 <div className='day-schedule__pickup'>
                         <div className="pickup-info">
                             <div className="pickup-time-amount">4:00 PM - 10 lbs</div>

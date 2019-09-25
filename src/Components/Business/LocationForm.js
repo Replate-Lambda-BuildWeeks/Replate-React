@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Form, Field, withFormik } from 'formik';
 // import axios from 'axios';
 import * as Yup from 'yup';
-import UserContext from '../../contexts/UserContext';
+
 
 const LocationForm = props => {
 
