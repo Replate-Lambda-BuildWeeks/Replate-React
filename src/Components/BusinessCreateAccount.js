@@ -1,9 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { withFormik, Form, Field } from "formik";
-import * as Yup from "yup";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import { withFormik, Form, Field } from 'formik';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
+import * as Yup from 'yup';
+import axios from 'axios';
 
-const BusOnboardForm = ({ values, errors, status, validateForm }) => {
+const BusOnboardForm = ({
+  values,
+  errors,
+  status,
+  validateForm,
+  FormikBag
+}) => {
   const [business, setBusiness] = useState([]);
 
   //sets
@@ -19,21 +26,19 @@ const BusOnboardForm = ({ values, errors, status, validateForm }) => {
         <h2>Create Business Account</h2>
         <div>
           <div>
-            <label>Business Name</label>
-            <Field
-              type="text"
-              name="name"
-            //   value=""
-            //   placeholder="" || {errors.name}
-            //   className="errors"
-            />
-            {errors.name && <p className="errors">{errors.name}</p>}
+            <div>
+              <label>Business Name</label>
+              <Field type="text" name="restaurant_name" />
+              {errors.restaurant_name && (
+                <p className="errors">{errors.restaurant_name}</p>
+              )}
+            </div>
           </div>
           <div>
             <label>Contact Name</label>
-            <Field type="text" name="name" />
-            {errors.contactName && (
-              <p className="errors">{errors.contactName}</p>
+            <Field type="text" name="username" />
+            {errors.contact_name && (
+              <p className="errors">{errors.contact_name}</p>
             )}
           </div>
           <div>
@@ -71,20 +76,8 @@ const BusOnboardForm = ({ values, errors, status, validateForm }) => {
             <Field type="password" name="password" />
             {errors.password && <p className="errors">{errors.password}</p>}
           </div>
-          <div>
-            <label>Confirm Password</label>
-            <Field type="password" name="confirmPassword" />
-            {errors.confirmPassword && (
-              <p className="errors">{errors.confirmPassword}</p>
-            )}
-          </div>
         </div>
-        <button
-          type="submit"
-          onClick={() => validateForm().then(() => console.log("blah"))}
-        >
-          Submit
-        </button>
+        <button type="submit">Submit</button>
       </Form>
     </div>
   );
@@ -92,51 +85,57 @@ const BusOnboardForm = ({ values, errors, status, validateForm }) => {
 
 const FormikBusOnboardForm = withFormik({
   mapPropsToValues({
-    name,
-    contactName,
+    restaurant_name,
+    contact_name,
     address,
     city,
     zip,
     phone,
     email,
-    password,
-    confirmPassword
+    password
   }) {
     return {
-      name: name || "",
-      contactName: contactName || "",
-      address: address || "",
-      city: city || "",
-      zip: zip || "",
-      phone: phone || "",
-      email: email || "",
-      password: password || "",
-      confirmPassword: confirmPassword || ""
+      restaurant_name: restaurant_name || '',
+      contact_name: contact_name || '',
+      address: address || '',
+      city: city || '',
+      zip: zip || '',
+      phone: phone || '',
+      email: email || '',
+      password: password || ''
     };
   },
 
   validationSchema: Yup.object().shape({
-    name: Yup.string().required("*Required field"),
-    contactName: Yup.string().required("*Required field"),
-    address: Yup.string().required("*Required field"),
-    zip: Yup.string().required("*Required field"),
-    city: Yup.string().required("*Required field"),
-    phone: Yup.string().required("*Required field"),
+    name: Yup.string().required('*Required field'),
+    username: Yup.string().required('*Required field'),
+    address: Yup.string().required('*Required field'),
+    zip: Yup.string().required('*Required field'),
+    city: Yup.string().required('*Required field'),
+    phone: Yup.string().required('*Required field'),
     email: Yup.string()
-      .email("Invalid email")
-      .required("*Required field"),
-    password: Yup.string().required("*Required field"),
-    confirmPassword: Yup.string().required("*Required field")
+      .email('Invalid email')
+      .required('*Required field'),
+    password: Yup.string().required('*Required field'),
+    confirmPassword: Yup.string().required('*Required field')
   }),
 
-  handleSubmit(values, { setStatus }) {
-    axios
-      .post("https://reqres.in/api/users", values)
-      .then(res => {
-        setStatus(res.data);
-        console.log("BusOnboardForm POST request success:", res);
+  handleSubmit(values, FormikBag) {
+    console.log(values);
+    // forwards the user to the profile page using the formikBag props
+    axiosWithAuth()
+      .post('/auth/register', values)
+      .then(response => {
+        console.log(response);
+        // sets token to local storage.
+        localStorage.setItem('token', response.data.token);
+        FormikBag.props.history.push('/dashboard');
+
+        // forwards the user to the profile page using the formikBag props
       })
-      .catch(err => console.log(err.res));
+      .catch(err => {
+        console.log(err);
+      });
   }
 })(BusOnboardForm);
 

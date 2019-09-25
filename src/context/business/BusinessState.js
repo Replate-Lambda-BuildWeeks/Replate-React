@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react'; // gives us acces to the state and dispatch so we can dispatch to our reducer.
+import React, { useReducer, useState } from 'react'; // gives us acces to the state and dispatch so we can dispatch to our reducer.
 
 import uuid from 'uuid';
 import BusinessContext from './businessContext';

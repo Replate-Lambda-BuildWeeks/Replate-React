@@ -4,25 +4,31 @@ import BusOnboardForm from './Components/BusinessCreateAccount';
 import VolunteerCreateAccount from '../src/Components/VolunteerCreateAccount';
 // import PickupForm from './Components/Business/PickupForm';
 // import Home from './pages/Home';
-import { Route } from 'react-router-dom';
+import Dashboard from './Components/Business/Dashboard';
+import { Route, Switch } from 'react-router-dom';
 import Private from '../src/utils/PrivateRoute';
 import Login from './Components/Login';
-
+import VolunteerState from './context/volunteer/VolunteerState';
+import BusinessContext from './context/business/businessContext';
 function App() {
   return (
     <div className="App">
-      {/* <Home /> */}
+      <Switch>
+        {/* <Home /> */}
 
-      <Route exact path="/" render={props => <Login {...props} />} />
+        <Route exact path="/" render={props => <Login {...props} />} />
+        {/* <VolunteerState /> */}
+        {/* <PickupForm /> */}
+        <Private exact path="/business-onboard" component={BusOnboardForm} />
 
-      {/* <PickupForm /> */}
-      <Private exact path="/business-onboard" component={BusOnboardForm} />
+        <Private
+          exact
+          path="/volunteer-onboard"
+          component={VolunteerCreateAccount}
+        />
 
-      <Private
-        exact
-        path="/volunteer-onboard"
-        component={VolunteerCreateAccount}
-      />
+        <Route exact path="/dashboard" component={Dashboard} />
+      </Switch>
     </div>
   );
 }
