@@ -13,7 +13,7 @@ import axios from "axios";
 //     return error;
 // }
 
-const VolOnboardForm = ({ values, errors, status, validateForm }) => {
+const VolOnboardForm = ({ errors, status, validateForm }) => {
   const [volunteer, setVolunteer] = useState([]);
 
   //sets
@@ -21,7 +21,7 @@ const VolOnboardForm = ({ values, errors, status, validateForm }) => {
     if (status) {
       setVolunteer([...volunteer, status]);
     }
-  }, [volunteer, status]);
+  }, [setVolunteer, status]);
 
   return (
     <div>
@@ -29,47 +29,67 @@ const VolOnboardForm = ({ values, errors, status, validateForm }) => {
         <h2>Create Volunteer Account</h2>
         <div>
           <div>
-            <label>First Name</label>
-            <Field type="text" name="firstName"  initial-value="" placeholder={errors.firstName}/>
-            {errors.firstName && <p className="errors">{errors.firstName}</p>}
-            {/* So value="" placeholder={this.state.error} */}
+            <label>Full Name</label>
+            <Field
+              type="text"
+              name="volunteer_name"
+              initial-value=""
+              placeholder={errors.volunteer_name}
+            />
           </div>
-          <div>
-            <label>Last Name</label>
-            <Field type="text" name="lastName" />
-            {errors.lastName && <p className="errors">{errors.lastName}</p>}
-          </div>
+
           <div>
             <label>Phone</label>
             <Field
               type="text"
               name="phone"
-              placeholder="xxx-xxx-xxxx"
-            //   validate={validatePhone}
+              placeholder={errors.phone}
+              className="errors"
+              //   validate={validatePhone}
             />
-            {errors.phone && <p className="errors">{errors.phone}</p>}
           </div>
           <div>
             <label>Email</label>
-            <Field type="email" name="email" />
-            {errors.email && <p className="errors">{errors.email}</p>}
+            <Field
+              type="email"
+              name="email"
+              placeholder={errors.email}
+              className="errors"
+            />
+          </div>
+          <div>
+            <label>Username</label>
+            <Field
+              type="text"
+              name="username"
+              placeholder={errors.username}
+              className="errors"
+            />
           </div>
           <div>
             <label>Password</label>
-            <Field type="password" name="password" />
-            {errors.password && <p className="errors">{errors.password}</p>}
+            <Field
+              type="password"
+              name="password"
+              placeholder={errors.password}
+              className="errors"
+            />
           </div>
           <div>
             <label>Confirm Password</label>
-            <Field type="password" name="confirmPassword" />
-            {errors.confirmPassword && (
-              <p className="errors">{errors.confirmPassword}</p>
-            )}
+            <Field
+              type="password"
+              name="confirmPassword"
+              placeholder={errors.password}
+              className="errors"
+            />
           </div>
         </div>
         <button
           type="submit"
-          onClick={() => validateForm().then(() => console.log("blah"))}
+          onClick={() =>
+            validateForm().then(() => console.log("Volunteer Form Submitted"))
+          }
         >
           Submit
         </button>
@@ -80,37 +100,37 @@ const VolOnboardForm = ({ values, errors, status, validateForm }) => {
 
 const FormikVolOnboardForm = withFormik({
   mapPropsToValues({
-    firstName,
-    lastName,
+    volunteer_name,
     phone,
     email,
+    username,
     password,
     confirmPassword
   }) {
     return {
-      firstName: firstName || "",
-      lastName: lastName || "",
+      volunteer_name: volunteer_name || "",
       phone: phone || "",
       email: email || "",
+      username: username || "",
       password: password || "",
       confirmPassword: confirmPassword || ""
     };
   },
 
   validationSchema: Yup.object().shape({
-    firstName: Yup.string().required("*Required field"),
-    lastName: Yup.string().required("*Required field"),
+    volunteer_name: Yup.string().required("*Required field"),
     phone: Yup.string().required("*Required field"),
     email: Yup.string()
       .email("Invalid email")
       .required("*Required field"),
+    username: Yup.string().required("*Required field"),
     password: Yup.string().required("*Required field"),
     confirmPassword: Yup.string().required("*Required field")
   }),
 
   handleSubmit(values, { setStatus }) {
     axios
-      .post("https://reqres.in/api/users", values)
+      .post("http://0bbfee1e.ngrok.io/volunteers", values)
       .then(res => {
         setStatus(res.data);
         console.log("VolOnboardForm POST request success:", res);

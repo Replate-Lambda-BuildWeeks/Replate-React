@@ -3,7 +3,7 @@ import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 
-const BusOnboardForm = ({ values, errors, status, validateForm }) => {
+const BusOnboardForm = ({ errors, status }) => {
   const [business, setBusiness] = useState([]);
 
   //sets
@@ -11,7 +11,7 @@ const BusOnboardForm = ({ values, errors, status, validateForm }) => {
     if (status) {
       setBusiness([...business, status]);
     }
-  }, [business, status]);
+  }, [setBusiness, status]);
 
   return (
     <div>
@@ -22,34 +22,46 @@ const BusOnboardForm = ({ values, errors, status, validateForm }) => {
             <label>Business Name</label>
             <Field
               type="text"
-              name="name"
-              value=""
-              placeholder={errors.name}
+              name="restaurant_name"
+              placeholder={errors.restaurant_name}
               className="errors"
             />
-            {errors.name && <p className="errors">{errors.name}</p>}
           </div>
           <div>
             <label>Contact Name</label>
-            <Field type="text" name="name" />
-            {errors.contactName && (
-              <p className="errors">{errors.contactName}</p>
-            )}
+            <Field
+              type="text"
+              name="contact_name"
+              placeholder={errors.contact_name}
+              className="errors"
+            />
           </div>
           <div>
             <label>Street Address</label>
-            <Field type="text" name="address" />
-            {errors.address && <p className="errors">{errors.address}</p>}
+            <Field
+              type="text"
+              name="address"
+              placeholder={errors.address}
+              className="errors"
+            />
           </div>
           <div>
             <label>City</label>
-            <Field type="text" name="city" />
-            {errors.city && <p className="errors">{errors.city}</p>}
+            <Field
+              type="text"
+              name="city"
+              placeholder={errors.city}
+              className="errors"
+            />
           </div>
           <div>
             <label>Zip</label>
-            <Field type="text" name="zip" />
-            {errors.zip && <p className="errors">{errors.zip}</p>}
+            <Field
+              type="text"
+              name="zip"
+              placeholder={errors.zip}
+              className="errors"
+            />
           </div>
           <div>
             <label>Phone</label>
@@ -57,31 +69,51 @@ const BusOnboardForm = ({ values, errors, status, validateForm }) => {
               type="text"
               name="phone"
               placeholder="xxx-xxx-xxxx"
+              placeholder={errors.phone}
+              className="errors"
               //   validate={validatePhone}
             />
-            {errors.phone && <p className="errors">{errors.phone}</p>}
           </div>
           <div>
             <label>Email</label>
-            <Field type="email" name="email" />
-            {errors.email && <p className="errors">{errors.email}</p>}
+            <Field
+              type="email"
+              name="email"
+              placeholder={errors.email}
+              className="errors"
+            />
+          </div>
+          <div>
+            <label>Username</label>
+            <Field
+              type="text"
+              name="username"
+              placeholder={errors.username}
+              className="errors"
+            />
           </div>
           <div>
             <label>Password</label>
-            <Field type="password" name="password" />
-            {errors.password && <p className="errors">{errors.password}</p>}
+            <Field
+              type="password"
+              name="password"
+              placeholder={errors.password}
+              className="errors"
+            />
           </div>
           <div>
             <label>Confirm Password</label>
-            <Field type="password" name="confirmPassword" />
-            {errors.confirmPassword && (
-              <p className="errors">{errors.confirmPassword}</p>
-            )}
+            <Field
+              type="password"
+              name="confirmPassword"
+              placeholder={errors.confirmPassword}
+              className="errors"
+            />
           </div>
         </div>
         <button
           type="submit"
-          onClick={() => validateForm().then(() => console.log("blah"))}
+          // onClick={() => validateForm().then(() => console.log("blah"))}
         >
           Submit
         </button>
@@ -92,32 +124,34 @@ const BusOnboardForm = ({ values, errors, status, validateForm }) => {
 
 const FormikBusOnboardForm = withFormik({
   mapPropsToValues({
-    name,
-    contactName,
+    restaurant_name,
+    contact_name,
     address,
     city,
     zip,
     phone,
     email,
+    username,
     password,
     confirmPassword
   }) {
     return {
-      name: name || "",
-      contactName: contactName || "",
+      restaurant_name: restaurant_name || "",
+      contact_name: contact_name || "",
       address: address || "",
       city: city || "",
       zip: zip || "",
       phone: phone || "",
       email: email || "",
+      username: username || "",
       password: password || "",
       confirmPassword: confirmPassword || ""
     };
   },
 
   validationSchema: Yup.object().shape({
-    name: Yup.string().required("*Required field"),
-    contactName: Yup.string().required("*Required field"),
+    restaurant_name: Yup.string().required("*Required field"),
+    contact_nameName: Yup.string().required("*Required field"),
     address: Yup.string().required("*Required field"),
     zip: Yup.string().required("*Required field"),
     city: Yup.string().required("*Required field"),
@@ -125,13 +159,14 @@ const FormikBusOnboardForm = withFormik({
     email: Yup.string()
       .email("Invalid email")
       .required("*Required field"),
+      username: Yup.string().required("*Required field"),
     password: Yup.string().required("*Required field"),
     confirmPassword: Yup.string().required("*Required field")
   }),
 
   handleSubmit(values, { setStatus }) {
     axios
-      .post("https://reqres.in/api/users", values)
+      .post("http://0bbfee1e.ngrok.io/restaurants", values)
       .then(res => {
         setStatus(res.data);
         console.log("BusOnboardForm POST request success:", res);

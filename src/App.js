@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import PickupForm from './Components/Business/PickupForm';
-import UserType from "./Components/CreateAccount"
+import UserType from "./Components/CreateAccount Components/CreateAccount"
 import VolunteerDashboard from "./Components/VolunteerDashboard/VolunteerDashboard"
 import { Route } from 'react-router-dom';
 // import Private from './components/PrivateRoute';
@@ -15,8 +15,8 @@ function App() {
       {/* <Home /> */}
       <Route exact path="/login" render={props => <Login {...props} />} />
       {/* <PickupForm/> */}
-      <VolunteerDashboard/>
-      {/* <UserType/> */}
+      {/* <VolunteerDashboard/> */}
+      <UserType/>
     </div>
   )
 }

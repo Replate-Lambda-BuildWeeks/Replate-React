@@ -11,17 +11,18 @@ export function UserType() {
       <label>Volunteer</label>
       <input
         type="radio"
-        onClick={function(event) {
+        onChange={function(event) {
           setBusCheck(!busCheck);
           setVolCheck(!volCheck);
         }}
         name="volunteer"
         checked={volCheck}
+        
       />
       <label>Business</label>
       <input
         type="radio"
-        onClick={function(event) {
+        onChange={function(event) {
           setBusCheck(!busCheck);
           setVolCheck(!volCheck);
         }}
