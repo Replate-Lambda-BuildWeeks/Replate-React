@@ -12,10 +12,11 @@ function App() {
 
   return(
     <div className="App">
-      <Home />
+      {/* <Home /> */}
       <Route exact path="/login" render={props => <Login {...props} />} />
       {/* <PickupForm/> */}
       <VolunteerDashboard/>
+      {/* <UserType/> */}
     </div>
   )
 }
