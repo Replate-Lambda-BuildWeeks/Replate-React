@@ -27,7 +27,33 @@
   font-size: .8rem;
 }
 
-.pickupCard{
+.volDash *{
+  background: #d6f8ff;
+  border: 1px blue solid;
+  color: #0a3055;
+}
+.volDash h1, h2{
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.volDash h3, h4{
+  font-family: 'Ubuntu', sans-serif;
+}
+.volDash-pickupCard{
   border: 1px solid black;
   display: flex;
+}
+.volDash-header{
+  display: flex;
+}
+.volDash-logo{
+  height: 100px;
+
+}
+
+.volDash-userImage{
+  border-radius: 50%;
+  height: 80px;
+  width: 80px;
+  object-fit: cover;
 }
