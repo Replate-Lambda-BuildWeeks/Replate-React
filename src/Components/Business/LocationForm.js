@@ -67,7 +67,14 @@ const FormikLocationForm = withFormik({
         state: Yup.string().required(),
         zip: Yup.string().required(),
     }),
-    
+    // handleSubmit(values) {
+    //     axiosWithAuth()
+    //     .post('', values)
+    //     .then(res => {
+    //         console.log(res)
+    //     })
+    //     .catch(err => console.log(err))
+    // }
 })(LocationForm)
 
 export default FormikLocationForm;

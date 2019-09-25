@@ -64,3 +64,22 @@
                         margin: 1rem 0;
                         line-height: 2rem;
                     }
+
+                    .dashboard-button {
+                        color: #494949 !important;
+                        text-transform: uppercase;
+                        text-decoration: none;
+                        background: #ffffff;
+                        padding: 20px;
+                        border: 1px solid #494949 !important;
+                        display: inline-block;
+                        transition: all 0.4s ease 0s;
+                        }
+                        .dashboard-button:hover {
+                            color: #ffffff !important;
+                            background: #7d9cae;
+                            border-color: #7d9cae !important;
+                            transition: all 0.4s ease 0s;
+                            }
+
+                            
