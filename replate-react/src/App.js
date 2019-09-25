@@ -16,7 +16,7 @@ function App() {
       {/* <VolOnboardForm/> */}
       {/* <Dashboard/> */}
       <AvailablePickups/>
-      <VolunteerDashboard/>
+      {/* <VolunteerDashboard/> */}
     </div>
   );
 }
