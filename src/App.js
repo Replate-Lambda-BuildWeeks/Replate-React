@@ -1,24 +1,24 @@
 import React from 'react';
 import './App.css';
-import BusOnboardForm from './Components/BusinessCreateAccount';
-import VolunteerCreateAccount from '../src/Components/VolunteerCreateAccount';
+import BusOnboardForm from './Components/CreateAccount/BusinessCreateAccount';
+import VolunteerCreateAccount from './Components/CreateAccount/VolunteerCreateAccount';
 // import PickupForm from './Components/Business/PickupForm';
 // import Home from './pages/Home';
 import Dashboard from './Components/Business/Dashboard';
 import { Route, Switch } from 'react-router-dom';
 import Private from '../src/utils/PrivateRoute';
 import Login from './Components/Login';
+import VolunteerDashboard from './Components/VolunteerDashboard/VolunteerDashboard'
 import VolunteerState from './context/volunteer/VolunteerState';
 import BusinessContext from './context/business/businessContext';
 
 function App() {
   return (
     <div className="App">
-      {/* <Home /> */}
-      <Route exact path="/login" render={props => <Login {...props} />} />
+      {/* <Route exact path="/login" render={props => <Login {...props} />} /> */}
       {/* <PickupForm/> */}
       {/* <VolunteerDashboard/> */}
-      <UserType/>
+      {/* <UserType/> */}
       <Switch>
         {/* <Home /> */}
 
@@ -38,7 +38,6 @@ function App() {
     </div>
   );
 }
-
 export default App;
 
 // return (
