@@ -20,27 +20,3 @@
 .App-link {
   color: #09d3ac;
 }
-
-.errors {
-  color: red;
-  margin: 0 auto;
-  font-size: .8rem;
-}
-
-.form-width {
-  max-width: 400px;
-}
-
-#root>div>div:nth-child(1)>div>form>input {
-  /* sign in button */
-  background-color: #7d9cae;
-}
-
-#root>div>div:nth-child(1)>div>form>input:hover {
-  /* sign in button */
-  background-color: #ccd7dd;
-}
-
-#root>div>div:nth-child(1)>div>a {
-  color: #7d9cae;
-}

@@ -10,6 +10,7 @@ import Private from '../src/utils/PrivateRoute';
 import Login from './Components/Login';
 import VolunteerState from './context/volunteer/VolunteerState';
 import BusinessContext from './context/business/businessContext';
+
 function App() {
   return (
     <div className="App">
@@ -20,7 +21,7 @@ function App() {
         {/* <VolunteerState /> */}
         {/* <PickupForm /> */}
         <Private exact path="/business-onboard" component={BusOnboardForm} />
-
+       
         <Private
           exact
           path="/volunteer-onboard"
