@@ -1,21 +1,40 @@
-import React from 'react';
-
+import React, {useState} from 'react';
+import LocationForm from "./LocationForm"
+// import BusinessContext from './businessContext';
 
 const BusinessDashboard = () => {
+
+    const [showmodal, setShowModal] = useState(false);
+    const [locations, setLocations] = useState([]);
+
+    const onClick = () => {
+        setShowModal(true)
+    }
+    const onsubmit = (location) => {
+        setShowModal(false)
+        setLocations([...locations, location])
+    }
     return (
         <div className='dashboard'>
             <h1 className='dashboard-header'>Stripe</h1>
             <div className='dashboard-section'>
             <h3 className='dashboard-subheader'>Our Locations</h3>
             <div className="dashboard-locations">
+            {locations.map((location, index) => (
 
-                <div className="dashboard-location">
+                <div className="dashboard-location" key={index}>
                     <div className='location-image'></div>
                     <div className="location-text">
-                    <p className='location-address'>123 Street<br />San Francisco, CA 94103</p>
+                    <p className='location-address'>{location.address}
+                    <br />
+                    {location.state}
+                    {location.city} {location.zip}</p>
                     </div>
                 </div>
-                <button className='dashboard-button add-location__button'>New Location</button>
+            ))
+            }
+                <button onClick={onClick} className='dashboard-button add-location__button'>Add New Location</button>
+                {showmodal && <LocationForm onsubmit={onsubmit} />}
             </div>
             </div>
             <div className='dashboard-section'>
@@ -50,6 +69,7 @@ const BusinessDashboard = () => {
                 </div>
                 </div>
             </div>
+            
         </div>
     )
 }

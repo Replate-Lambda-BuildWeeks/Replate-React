@@ -69,11 +69,12 @@
                         color: #494949 !important;
                         text-transform: uppercase;
                         text-decoration: none;
-                        background: #ffffff;
-                        padding: 20px;
+                        background: #ced7e8;
+                        padding: 15px;
                         border: 1px solid #494949 !important;
                         display: inline-block;
                         transition: all 0.4s ease 0s;
+                        border-radius: 30px
                         }
                         .dashboard-button:hover {
                             color: #ffffff !important;

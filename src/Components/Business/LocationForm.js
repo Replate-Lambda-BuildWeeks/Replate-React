@@ -6,15 +6,9 @@ import * as Yup from 'yup';
 
 const LocationForm = props => {
 
-    const { status } = props;
 
-    const id = props.match.params.id;
-
-    const { errors, touched } = props;
-
-    useEffect(() => {
-        status && setLocations(locations => [...locations, status])
-    }, [status])
+    const { errors, touched} = props;
+    
 
     return(
         <div className='new-pickup__modal'>
@@ -67,14 +61,9 @@ const FormikLocationForm = withFormik({
         state: Yup.string().required(),
         zip: Yup.string().required(),
     }),
-    // handleSubmit(values) {
-    //     axiosWithAuth()
-    //     .post('', values)
-    //     .then(res => {
-    //         console.log(res)
-    //     })
-    //     .catch(err => console.log(err))
-    // }
+    handleSubmit: (value, {props}) => {
+        props.onsubmit(value);
+    }
 })(LocationForm)
 
 export default FormikLocationForm;

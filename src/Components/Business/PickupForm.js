@@ -7,6 +7,7 @@ import * as Yup from 'yup';
 const PickupForm = props => {
 
     
+    const { appointments, setAppointments } = useContext();
 
     const id = props.match.params.id;
     const { status } = props;
@@ -32,7 +33,6 @@ const PickupForm = props => {
                 <h1 className='pickup-form__header'>Schedule A Pickup</h1>
                 <div className='pickup-form__fields'>
         
-                <Field type='text' name='name' placeholder='Enter name' />
         
                 <Field type='text'  name='date' placeholder='Enter date' />
         
@@ -51,9 +51,8 @@ const PickupForm = props => {
     )
 }
 const FormikPickupForm = withFormik({
-    mapPropsToValues({ name, date, time, amount, type }) {
+    mapPropsToValues({ date, time, amount, type }) {
         return {
-            name: name || '',
             date: date || '',
             time: time || '',
             amount: amount || '',
@@ -61,7 +60,6 @@ const FormikPickupForm = withFormik({
         }
     },
     validationSchema : Yup.object().shape({
-        name: Yup.string().required(),
 		date: Yup.string().required(),
         time: Yup.string().required(),
         amount: Yup.string().required(),
