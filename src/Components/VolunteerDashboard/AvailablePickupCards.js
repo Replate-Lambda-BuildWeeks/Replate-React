@@ -2,30 +2,36 @@ import React, { useState, useEffect } from "react";
 import { Card, CardTitle, CardSubtitle, Button } from "reactstrap";
 import axios from "axios";
 
-export default function AvailablePickupCards({ quantity, food, date, time, restaurant_name }) {
+export default function AvailablePickupCards(pickup, address) {
+  console.log(pickup);
+  console.log(address);
 
-    function Claim(){
-        const [claimed, setClaimed] = useState([]); // state holding business address
-        useEffect(() => {
-            axios
-              .put()
-              .then(res => {
-                console.log(res.data);
-                setClaimed(res.data);
-              })
-              .catch(err => {
-                console.log(err);
-              });
-          }, [setClaimed]);
-    }
-    
+  function Claim() {
+    const [claimed, setClaimed] = useState([]);
+    useEffect(() => {
+      axios
+        .put(`http://0bbfee1e.ngrok.io/pickups/`)
+        .then(res => {
+          console.log(res.data);
+          setClaimed(res.data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }, [setClaimed]);
+
+    return <p>Claimed!</p>;
+  }
+
   return (
     <div className="pickupCard">
       <Card>
-        <CardTitle>{`${date} at ${time}`}</CardTitle>
-        <CardSubtitle>{restaurant_name}</CardSubtitle>
-        <CardSubtitle>{`${quantity} of ${food}`}</CardSubtitle>
-        <Button type="submit" onClick={Claim} >Claim</Button>
+        <CardTitle>{`${pickup.date} at ${pickup.time}`}</CardTitle>
+        <CardSubtitle>{pickup.restaurant_name}</CardSubtitle>
+        <CardSubtitle>{`${pickup.quantity} of ${pickup.food}`}</CardSubtitle>
+        <Button type="submit" onClick={Claim}>
+          Claim
+        </Button>
       </Card>
     </div>
   );

@@ -1,23 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import ScheduledPickupCards from "./ScheduledPickupCards";
 import AvailablePickupCards from "./AvailablePickupCards";
 import logo from "../../images/logo.png";
 import userImage from "../../images/userImage.jpg";
 
+
+const id = window.localStorage.getItem("id");
+    console.log(id);
+
 export default function VolunteerDashboard() {
+
+  // const id = window.localStorage.getItem("id");
+  //   console.log(id);
   const [pickup, setPickup] = useState([]); //holding pickup data
   const [volunteer, setVolunteer] = useState(["Volunteer"]); // state holding volunteer name
   const [address, setAddress] = useState([]); // state holding business address
-
+  // const id = props.match.params.id;
   //axios call for volunteer name
   useEffect(() => {
+    const id = window.localStorage.getItem("id");
+    console.log(id);
     axios
       .get(`http://0bbfee1e.ngrok.io/volunteers/1`)
       .then(res => {
-        console.log(res.data.volunteer_name);
+        //console.log(res.data);
         setVolunteer(res.data);
-        // const VolName = res.data.name;
       })
       .catch(err => {
         console.log("Volunteer Dashboard:", err);
@@ -51,25 +59,6 @@ export default function VolunteerDashboard() {
       });
   }, [setAddress]);
 
-  // function Scheduled() {
-  //   if (pickup === []) {
-  //     return <h2>None</h2>;
-  //   } else {
-  //     pickup.map(p => {
-  //       if (p.volunteer_id === volunteer.id) {
-  //         // spread each of the pickup values as props into a card component:
-  //         // console.log(volunteer.volunteer_id);
-  //         // console.log(p);
-  //         return <ScheduledPickupCards key={p.id} {...p} />;
-  //       } else if (p.volunteer_id != null) {
-  //         // console.log(volunteer.id);
-  //         // console.log(p.volunteer_id);
-  //         return null;
-  //       }
-  //     });
-  //   }
-  // }
-
   return (
     <div className="volDash-container">
       <div className="volDash-header">
@@ -91,7 +80,7 @@ export default function VolunteerDashboard() {
           {pickup.map(p => {
             if (p.volunteer_id === volunteer.id) {
               // spread each of the pickup values as props into a card component:
-              console.log(volunteer.volunteer_id);
+              console.log(p.volunteer_id);
               // console.log(p);
               return <ScheduledPickupCards key={p.id} {...p} />;
             } else if (p.volunteer_id != null) {
@@ -109,10 +98,10 @@ export default function VolunteerDashboard() {
             if (p.volunteer_id === null) {
               // spread each of the pickup values as props into a card component:
               console.log(p);
-              console.log("IN Available()");
               return <AvailablePickupCards key={p.id} {...p} />;
-            } else if (p.volunteer_id != null) {
-              return <h2>None</h2>;
+            }
+            if (p.volunteer_id != null) {
+              return null;
             }
           })}
         </div>
