@@ -1,16 +1,5 @@
 import React from 'react';
 
-<<<<<<< HEAD
-const Dashboard = () => {
-  return (
-    <div>
-      <h1>Hello From dashboard</h1>
-    </div>
-  );
-};
-
-export default Dashboard;
-=======
 
 const BusinessDashboard = () => {
     return (
@@ -43,4 +32,3 @@ const BusinessDashboard = () => {
 }
 
 export default BusinessDashboard
->>>>>>> 32560a1461be3ccfbbf6304b3fcda23b40c61042
