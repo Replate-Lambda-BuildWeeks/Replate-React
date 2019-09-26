@@ -21,64 +21,73 @@
   color: #09d3ac;
 }
 
-.errors{
+.errors {
   color: red;
   margin: 0 auto;
-  font-size: .8rem;
+  font-size: 0.8rem;
 }
-.volDash-container *{
- 
+.volDash-container * {
   /* border: 1px blue solid; */
   color: #0a3055;
 }
-.volDash h1, h2{
-  font-family: 'Ubuntu', sans-serif;
+.volDash h1,
+h2 {
+  font-family: "Ubuntu", sans-serif;
 }
 
-.volDash h3, h4{
-  font-family: 'Source Sans Pro', sans-serif;
+.volDash h3,
+h4,
+button {
+  font-family: "Source Sans Pro", sans-serif;
 }
-.volDash-pickupCard{
+.volDash-pickupCard {
   border: 1px solid black;
   display: flex;
 }
-.volDash-header{
+.volDash-header {
   background: #d6f8ff;
   display: flex;
-justify-content: flex-start;
+  justify-content: flex-start;
 }
-.volDash-logo{
+.volDash-logo {
   height: 60px;
   width: 60px;
+  margin: 20px;
 }
 
-.volDash-userImage{
+.volDash-userImage {
   border-radius: 50%;
   height: 60px;
   width: 60px;
   object-fit: cover;
-  
+  margin: 20px;
 }
 
-.volDash-container button{
+.volDash-container button {
   background-color: white;
-  margin: 5px;
+  text-align: center;
   border: 1px darkgrey solid;
   border-radius: 5px;
   padding: 3px 5px;
-
 }
 
-.volDash-UserSection{
+.volDash-button-div{
+  display: flex;
+  margin: auto;
+}
+
+.volDash-UserSection {
   display: flex;
   justify-content: flex-start;
   align-content: center;
   align-items: center;
 }
 
-.volDash-UserClaimSection{
+.volDash-UserClaimSection {
   display: flex;
   justify-content: space-between;
   align-content: center;
   align-items: center;
+  border-bottom: 1p red solid;
+  border-top: 1p red solid;
 }

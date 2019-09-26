@@ -23,11 +23,19 @@ export default function AvailablePickupCards(pickup, address) {
     return <p>Claimed!</p>;
   }
 
+  function DisplayAddress(){
+      if (address === {}){
+          return(null)
+      } else {
+        return(<CardSubtitle>{address.address}</CardSubtitle>)
+      }
+  }
+
   return (
     <div className="pickupCard">
       <Card>
         <CardTitle>{`${pickup.date} at ${pickup.time}`}</CardTitle>
-        <CardSubtitle>{pickup.restaurant_name}</CardSubtitle>
+        <CardSubtitle>{address.restaurant_name}</CardSubtitle>
         <CardSubtitle>{`${pickup.quantity} of ${pickup.food}`}</CardSubtitle>
         <Button type="submit" onClick={Claim}>
           Claim

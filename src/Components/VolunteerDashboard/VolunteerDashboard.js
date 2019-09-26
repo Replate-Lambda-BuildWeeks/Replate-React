@@ -5,16 +5,12 @@ import AvailablePickupCards from "./AvailablePickupCards";
 import logo from "../../images/logo.png";
 import userImage from "../../images/userImage.jpg";
 
-
-const id = window.localStorage.getItem("id");
-    console.log(id);
-
 export default function VolunteerDashboard() {
+  const id = localStorage.getItem("id");
+  console.log(id);
 
-  // const id = window.localStorage.getItem("id");
-  //   console.log(id);
   const [pickup, setPickup] = useState([]); //holding pickup data
-  const [volunteer, setVolunteer] = useState(["Volunteer"]); // state holding volunteer name
+  const [volunteer, setVolunteer] = useState(["Volunteer"]); // state volunteer name
   const [address, setAddress] = useState([]); // state holding business address
   // const id = props.match.params.id;
   //axios call for volunteer name
@@ -72,7 +68,9 @@ export default function VolunteerDashboard() {
             Welcome {volunteer.volunteer_name}!
           </h3>
         </div>
-        <button className="volDash-button">Claim a Pickup</button>
+        <div className="volDash-button-div">
+          <button className="volDash-button">Claim a Pickup</button>
+        </div>
       </div>
       <div className="volDash-section">
         <h3>Your Scheduled Pickups</h3>
