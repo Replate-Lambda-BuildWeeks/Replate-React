@@ -66,6 +66,7 @@ const FormikPickupForm = withFormik({
         type: Yup.string().required(),
     }),
     handleSubmit: (value, {props}) => {
+        console.log(props, "handleSubmitprops")
         props.onsubmit(value);
     }
 })(PickupForm)

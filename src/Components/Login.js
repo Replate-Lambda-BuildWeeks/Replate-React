@@ -26,6 +26,7 @@ const Login = props => {
         console.log(res);
         //sets token to local storage.
         localStorage.setItem('token', res.data.token);
+        localStorage.setItem("restaurant_id", `${res.data.id}`)
         // forwards the user to the profile page using the  props
         props.history.push('/business-onboard');
       })

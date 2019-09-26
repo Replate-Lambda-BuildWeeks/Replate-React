@@ -3,12 +3,11 @@ import { Form, Field, withFormik } from 'formik';
 // import axios from 'axios';
 import * as Yup from 'yup';
 
-
 const LocationForm = props => {
 
 
-    const { errors, touched} = props;
-    
+    const { errors, touched } = props;
+
 
     return(
         <div className='new-pickup__modal'>

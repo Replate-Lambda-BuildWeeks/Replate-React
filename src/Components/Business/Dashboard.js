@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import LocationForm from "./LocationForm"
 import PickupForm from "./PickupForm"
-// import BusinessContext from './businessContext';
+
 
 const BusinessDashboard = () => {
 
@@ -15,6 +15,7 @@ const BusinessDashboard = () => {
         setShowModal(true)
     }
     const onsubmit = (location) => {
+        console.log(location)
         setShowModal(false)
         setLocations([...locations, location])
        
@@ -63,6 +64,7 @@ const BusinessDashboard = () => {
                     <br />
                     {location.city},
                     {location.state} {location.zip}</p>
+                    {/* <button onClick={() => deleteLocation()} className='dashboard-delete'>Delete</button> */}
                     </div>
                 </div>
             ))
@@ -85,7 +87,7 @@ const BusinessDashboard = () => {
                 <div className="day-schedule" key={index}>
                     <div className='day-schedule__date'>September 23, 2019</div>
                
-                <div className='day-schedule__pickup'>
+                    <div className='day-schedule__pickup'>
                         <div className="pickup-info">
                             <div className="pickup-time-amount">{schedule.time}
                     {schedule.amount}
