@@ -26,10 +26,9 @@
   margin: 0 auto;
   font-size: .8rem;
 }
-
-.volDash *{
-  background: #d6f8ff;
-  border: 1px blue solid;
+.volDash-container *{
+ 
+  /* border: 1px blue solid; */
   color: #0a3055;
 }
 .volDash h1, h2{
@@ -37,23 +36,49 @@
 }
 
 .volDash h3, h4{
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 .volDash-pickupCard{
   border: 1px solid black;
   display: flex;
 }
 .volDash-header{
+  background: #d6f8ff;
   display: flex;
+justify-content: flex-start;
 }
 .volDash-logo{
-  height: 100px;
-
+  height: 60px;
+  width: 60px;
 }
 
 .volDash-userImage{
   border-radius: 50%;
-  height: 80px;
-  width: 80px;
+  height: 60px;
+  width: 60px;
   object-fit: cover;
+  
+}
+
+.volDash-container button{
+  background-color: white;
+  margin: 5px;
+  border: 1px darkgrey solid;
+  border-radius: 5px;
+  padding: 3px 5px;
+
+}
+
+.volDash-UserSection{
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
+  align-items: center;
+}
+
+.volDash-UserClaimSection{
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
 }

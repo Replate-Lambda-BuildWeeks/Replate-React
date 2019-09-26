@@ -17,7 +17,7 @@ function App() {
     <div className="App">
       {/* <Route exact path="/login" render={props => <Login {...props} />} /> */}
       {/* <PickupForm/> */}
-      {/* <VolunteerDashboard/> */}
+      <VolunteerDashboard/>
       {/* <UserType/> */}
       <Switch>
         {/* <Home /> */}
