@@ -30,16 +30,16 @@ const PickupForm = props => {
                 <div className='pickup-form__fields'>
         
         
-                <Field type='text'  name='date' placeholder='Enter date' />
+                <Field className='pickup-form__field' type='text'  name='date' placeholder='Enter date' />
         
-                <Field type='text' name='time' placeholder='Enter time' />
+                <Field className='pickup-form__field' type='text' name='time' placeholder='Enter time' />
         
-                <Field type='text' name='amount' placeholder='Enter amount' />
+                <Field className='pickup-form__field' type='text' name='amount' placeholder='Enter amount' />
             
-                <Field type='text' name='type' placeholder='Enter type of food' />
+                <Field className='pickup-form__field' type='text' name='type' placeholder='Enter type of food' />
 
                 </div>
-                <button type='submit'>Submit</button> 
+                <button className='pickup-form__submit' type='submit'>Submit</button> 
                  </div> 
 
             </Form>

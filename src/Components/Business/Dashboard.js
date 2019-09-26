@@ -43,8 +43,8 @@ const BusinessDashboard = () => {
                     <div className="location-text">
                     <p className='location-address'>{location.address}
                     <br />
-                    {location.state},
-                    {location.city} {location.zip}</p>
+                    {location.city},
+                    {location.state} {location.zip}</p>
                     </div>
                 </div>
             ))
