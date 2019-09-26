@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Form, Field, withFormik } from 'formik';
-import axios from 'axios';
+// import axios from 'axios';
 import * as Yup from 'yup';
 
 const LocationForm = props => {
@@ -55,10 +55,10 @@ const FormikLocationForm = withFormik({
         }
     },
         validationSchema : Yup.object().shape({
-        address: Yup.string().required('Cannot pass'),
-        city: Yup.string().required('You cannot pass!!!'),
-        state: Yup.string().required('You cannot pass!!!'),
-        zip: Yup.string().required('You cannot pass!!!'),
+        address: Yup.string().required(),
+        city: Yup.string().required(),
+        state: Yup.string().required(),
+        zip: Yup.string().required(),
     }),
     
 })(LocationForm)
