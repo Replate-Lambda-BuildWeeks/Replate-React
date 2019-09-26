@@ -7,7 +7,10 @@ import * as Yup from 'yup';
 const PickupForm = props => {
 
     
-  
+
+    const id = props.match.params.id;
+    const { status } = props;
+    const [locations, setLocations] = useState([]);
   
 
     // useEffect(() => {
