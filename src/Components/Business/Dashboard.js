@@ -29,7 +29,7 @@ const BusinessDashboard = () => {
         setSchedules([...schedules, schedule])
     }
 
-
+//  change
     return (
         <div className='dashboard'>
             <h1 className='dashboard-header'>Stripe</h1>
