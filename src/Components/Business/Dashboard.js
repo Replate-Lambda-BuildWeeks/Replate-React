@@ -8,7 +8,6 @@ const BusinessDashboard = () => {
             <div className='dashboard-section'>
             <h3 className='dashboard-subheader'>Our Locations</h3>
             <div className="dashboard-locations">
-
                 <div className="dashboard-location">
                     <div className='location-image'></div>
                     <div className="location-text">

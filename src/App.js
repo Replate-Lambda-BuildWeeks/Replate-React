@@ -1,18 +1,13 @@
 import React from 'react';
-
-import './App.css';
+// import './Dashboard.css';
 import FormikPickupForm from './Components/Business/PickupForm';
 import ModifyPickupForm from './Components/Business/ModifyPickupForm';
 import BusinessDashboard from './Components/Business/Dashboard';
 
-
-
 function App() {
 
   return(
-    
     <BusinessDashboard />
-    
   )
   // return (
   //   <div className="App">

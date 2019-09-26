@@ -1,9 +1,28 @@
-import React from "react";
+import React , { useState, useEffect, useContext } from "react";
 import { withFormik, Form, Field, } from "formik";
 import * as Yup from 'yup';
-
+// import axios from "axios";
 
 const PickupForm = props => {
+
+    
+
+    const id = props.match.params.id;
+    const { status } = props;
+    const [locations, setLocations] = useState([]);
+  
+
+    // useEffect(() => {
+    //     axios
+    //       .get()
+    //       .then(res => {
+    //         console.log(res.data);
+    //         setLocations(res.data);
+    //       })
+    //       .catch(err => console.log(err));
+    //   }, []);
+
+    
 
     return(
         <div className='new-pickup__modal'>
@@ -40,14 +59,14 @@ const FormikPickupForm = withFormik({
             type: type || ''
         }
     },
-//     validationSchema : Yup.object().shape({
-//         name: Yup.string().required(),
-// 		date: Yup.string().required(),
-//         time: Yup.string().required(),
-//         amount: Yup.string().required(),
-//         quantity: Yup.string().required(),
-//         type: Yup.string().required(),
-// 	}),
+    validationSchema : Yup.object().shape({
+        name: Yup.string().required(),
+		date: Yup.string().required(),
+        time: Yup.string().required(),
+        amount: Yup.string().required(),
+        quantity: Yup.string().required(),
+        type: Yup.string().required(),
+	}),
 })(PickupForm)
 
 export default FormikPickupForm;
