@@ -36,7 +36,7 @@ const BusOnboardForm = ({
           </div>
           <div>
             <label>Contact Name</label>
-            <Field type="text" name="username" />
+            <Field type="text" name="contact_name" />
             {errors.contact_name && (
               <p className="errors">{errors.contact_name}</p>
             )}
@@ -96,8 +96,8 @@ const FormikBusOnboardForm = withFormik({
   }) {
     return {
       restaurant_name: restaurant_name || '',
-      contact_name: contact_name || '',
-      address: address || '',
+      contact_name: contact_name || ' ',
+      address: address || ' ',
       city: city || '',
       zip: zip || '',
       phone: phone || '',
@@ -106,19 +106,19 @@ const FormikBusOnboardForm = withFormik({
     };
   },
 
-  validationSchema: Yup.object().shape({
-    name: Yup.string().required('*Required field'),
-    username: Yup.string().required('*Required field'),
-    address: Yup.string().required('*Required field'),
-    zip: Yup.string().required('*Required field'),
-    city: Yup.string().required('*Required field'),
-    phone: Yup.string().required('*Required field'),
-    email: Yup.string()
-      .email('Invalid email')
-      .required('*Required field'),
-    password: Yup.string().required('*Required field'),
-    confirmPassword: Yup.string().required('*Required field')
-  }),
+  // validationSchema: Yup.object().shape({
+  //   restaurant_name: Yup.string().required('*Required field'),
+  //   contact_name: Yup.string().required('*Required field'),
+  //   address: Yup.string().required('*Required field'),
+  //   zip: Yup.string().required('*Required field'),
+  //   city: Yup.string().required('*Required field'),
+  //   phone: Yup.string().required('*Required field'),
+  //   email: Yup.string()
+  //     .email('Invalid email')
+  //     .required('*Required field'),
+  //   password: Yup.string().required('*Required field'),
+  //   confirmPassword: Yup.string().required('*Required field')
+  // }),
 
   handleSubmit(values, FormikBag) {
     console.log(values);

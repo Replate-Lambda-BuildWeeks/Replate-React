@@ -96,18 +96,19 @@ const FormikVolOnboardForm = withFormik({
     };
   },
 
-  validationSchema: Yup.object().shape({
-    firstName: Yup.string().required('*Required field'),
-    lastName: Yup.string().required('*Required field'),
-    phone: Yup.string().required('*Required field'),
-    email: Yup.string()
-      .email('Invalid email')
-      .required('*Required field'),
-    password: Yup.string().required('*Required field'),
-    confirmPassword: Yup.string().required('*Required field')
-  }),
+  // validationSchema: Yup.object().shape({
+  //   firstName: Yup.string().required('*Required field'),
+  //   lastName: Yup.string().required('*Required field'),
+  //   phone: Yup.string().required('*Required field'),
+  //   email: Yup.string()
+  //     .email('Invalid email')
+  //     .required('*Required field'),
+  //   password: Yup.string().required('*Required field'),
+  //   confirmPassword: Yup.string().required('*Required field')
+  // }),
 
   handleSubmit(values, { setStatus }) {
+    delete values.confirmPassword;
     axios
       .post('http://0bbfee1e.ngrok.io/auth/login', values)
       .then(res => {
