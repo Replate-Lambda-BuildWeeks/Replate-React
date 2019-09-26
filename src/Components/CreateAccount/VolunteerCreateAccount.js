@@ -74,15 +74,6 @@ const VolOnboardForm = ({ errors, status, validateForm }) => {
               className="errors"
             />
           </div>
-          <div>
-            <label>Confirm Password</label>
-            <Field
-              type="password"
-              name="confirmPassword"
-              placeholder={errors.password}
-              className="errors"
-            />
-          </div>
         </div>
         <button
           type="submit"
@@ -109,8 +100,7 @@ const FormikVolOnboardForm = withFormik({
       phone: phone || '',
       email: email || '',
       username: username || '',
-      password: password || '',
-      confirmPassword: confirmPassword || ''
+      password: password || ''
     };
   },
 
@@ -121,19 +111,17 @@ const FormikVolOnboardForm = withFormik({
       .email('Invalid email')
       .required('*Required field'),
     username: Yup.string().required('*Required field'),
-    password: Yup.string().required('*Required field'),
-    confirmPassword: Yup.string().required('*Required field')
+    password: Yup.string().required('*Required field')
   }),
 
   handleSubmit(values, { setStatus }) {
-    delete values.confirmPassword;
     axios
       .post('http://0bbfee1e.ngrok.io/volunteers', values)
       .then()
       .catch();
 
     axios
-      .post('http://0bbfee1e.ngrok.io/auth/login', values)
+      .post('http://0bbfee1e.ngrok.io/auth/register', values)
       .then(res => {
         setStatus(res.data);
         console.log('VolOnboardForm POST request success:', res);

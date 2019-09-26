@@ -36,10 +36,8 @@ const BusOnboardForm = ({
           </div>
           <div>
             <label>Contact Name</label>
-            <Field type="text" name="contact_name" />
-            {errors.contact_name && (
-              <p className="errors">{errors.contact_name}</p>
-            )}
+            <Field type="text" name="contact" />
+            {errors.contact && <p className="errors">{errors.contact}</p>}
           </div>
           <div>
             <label>Street Address</label>
@@ -77,7 +75,6 @@ const BusOnboardForm = ({
             {errors.password && <p className="errors">{errors.password}</p>}
           </div>
         </div>
-        <button type="submit">Submit</button>
       </Form>
     </div>
   );
@@ -86,7 +83,7 @@ const BusOnboardForm = ({
 const FormikBusOnboardForm = withFormik({
   mapPropsToValues({
     restaurant_name,
-    contact_name,
+    contact,
     address,
     city,
     zip,
@@ -96,7 +93,7 @@ const FormikBusOnboardForm = withFormik({
   }) {
     return {
       restaurant_name: restaurant_name || '',
-      contact_name: contact_name || ' ',
+      contact: contact || ' ',
       address: address || ' ',
       city: city || '',
       zip: zip || '',
@@ -108,7 +105,7 @@ const FormikBusOnboardForm = withFormik({
 
   // validationSchema: Yup.object().shape({
   //   restaurant_name: Yup.string().required('*Required field'),
-  //   contact_name: Yup.string().required('*Required field'),
+  //   contact: Yup.string().required('*Required field'),
   //   address: Yup.string().required('*Required field'),
   //   zip: Yup.string().required('*Required field'),
   //   city: Yup.string().required('*Required field'),
