@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
+import Logo from '../../src/logo.png';
 import { Link } from 'react-router-dom';
 
 //adding the useState hook to add component level state
@@ -20,26 +21,25 @@ const Login = props => {
   const onSubmit = e => {
     e.preventDefault();
     axiosWithAuth()
-      .post('/login', user)
-      .then(response => {
+      .post('/auth/login', user)
+      .then(res => {
+        console.log(res);
         //sets token to local storage.
-        localStorage.setItem('token', response.data.payload);
-        // forwards the user to the profile page using the formikBag props
-        props.history.push('/dashboard');
+        localStorage.setItem('token', res.data.token);
+        // forwards the user to the profile page using the  props
+        props.history.push('/business-onboard');
       })
       .catch(err => {
-        console.log(err.response.data);
+        console.log(err);
       });
     // console.log(values);
   };
 
   return (
     <div className="login-form">
-      <h1 className="login-header">
-        <span className="">Replate</span>
-      </h1>
+      <img src={Logo} alt="replate logo" />
 
-      <form onSubmit={onSubmit} className="container">
+      <form onSubmit={onSubmit} className="container form-width">
         <div className="form-group">
           <input
             className="form-control"
@@ -68,7 +68,7 @@ const Login = props => {
         <input type="submit" value="Sign in" className="btn btn-success" />
       </form>
       <p>Don't have an account?</p>
-      <Link to="/register">Sign Up</Link>
+      <Link to="/volunteer-onboard">Sign Up</Link>
     </div>
   );
 };

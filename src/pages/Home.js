@@ -4,7 +4,7 @@ import Login from '../Components/Login';
 const Home = () => {
   return (
     <div>
-      <Login />
+      <h1>Sign up</h1>
     </div>
   );
 };

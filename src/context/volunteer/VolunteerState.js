@@ -1,19 +1,32 @@
-import React, { useReducer } from 'react';
-import { axiosWithAuth } from '../../utils/axiosWithAuth';
+import React, { useState } from 'react';
 
-import VolunteerContext from './volunteerContext';
-import VolunteerReducer from './volunteerReducer';
-import {
-  CREATE_VOLUNTEER,
-  DELETE_VOLUNTEER,
-  UPDATE_VOLUNTEER,
-  NOTIFY_VOLUNTEER,
-  SET_CURRENT,
-  CLEAR_CURRENT
-} from '../types';
+const Volunteer = () => {
+  const [request, setRequest] = useState('');
 
-const VolunteerState = () => {
-  return <div></div>;
+  const addRequest = business => {
+    setRequest(...request, business);
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    addRequest(request);
+    // console.log(request);
+  };
+
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <label>Accept Request</label>
+        <input
+          type="text"
+          value={request}
+          onChange={e => setRequest(e.target.value)}
+          required="please add business name"
+        />
+        <input type="submit" value="Accept Request" />
+      </form>
+    </div>
+  );
 };
 
-export default VolunteerState;
+export default Volunteer;
