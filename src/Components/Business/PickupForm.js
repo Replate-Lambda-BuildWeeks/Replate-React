@@ -1,67 +1,72 @@
-import React, { useState, useEffect } from 'react';
-import { withFormik, Form, Field } from 'formik';
-import VolunteerState from '../../context/volunteer/VolunteerState';
-import axiosWithAuth from '../../utils/axiosWithAuth';
+import React , { useState, useEffect, useContext } from "react";
+import { withFormik, Form, Field, } from "formik";
 import * as Yup from 'yup';
+// import axios from "axios";
 
 const PickupForm = props => {
-  return (
-    <div className="new-pickup__modal">
-      <Form className="pickup-form">
-        <div className="form-content">
-          <h1 className="pickup-form__header">Schedule A Pickup</h1>
-          <div className="pickup-form__fields">
-            <Field type="text" name="name" placeholder="Enter name" />
 
-            <Field type="text" name="date" placeholder="Enter date" />
+    
 
-            <Field type="text" name="time" placeholder="Enter time" />
+    const id = props.match.params.id;
+    const { status } = props;
+    const [locations, setLocations] = useState([]);
+  
 
-            <Field type="text" name="amount" placeholder="Enter amount" />
+    // useEffect(() => {
+    //     axios
+    //       .get()
+    //       .then(res => {
+    //         console.log(res.data);
+    //         setLocations(res.data);
+    //       })
+    //       .catch(err => console.log(err));
+    //   }, []);
 
-            <Field type="text" name="type" placeholder="Enter type of food" />
-          </div>
-          <button type="submit">Update</button>
+    
+
+    return(
+        <div className='new-pickup__modal'>
+            <Form className='pickup-form'>
+                <div className='form-content'>
+                <h1 className='pickup-form__header'>Schedule A Pickup</h1>
+                <div className='pickup-form__fields'>
+        
+                <Field type='text' name='name' placeholder='Enter name' />
+        
+                <Field type='text'  name='date' placeholder='Enter date' />
+        
+                <Field type='text' name='time' placeholder='Enter time' />
+        
+                <Field type='text' name='amount' placeholder='Enter amount' />
+            
+                <Field type='text' name='type' placeholder='Enter type of food' />
+
+                </div>
+                <button type='submit'>Submit</button> 
+                 </div> 
+
+            </Form>
         </div>
-      </Form>
-    </div>
-  );
-};
+    )
+}
 const FormikPickupForm = withFormik({
-  mapPropsToValues({ name, date, time, amount, type }) {
-    return {
-      name: name || '',
-      date: date || '',
-      time: time || '',
-      amount: amount || '',
-      type: type || ''
-    };
-  },
+    mapPropsToValues({ name, date, time, amount, type }) {
+        return {
+            name: name || '',
+            date: date || '',
+            time: time || '',
+            amount: amount || '',
+            type: type || ''
+        }
+    },
+    validationSchema : Yup.object().shape({
+        name: Yup.string().required(),
+		date: Yup.string().required(),
+        time: Yup.string().required(),
+        amount: Yup.string().required(),
+        quantity: Yup.string().required(),
+        type: Yup.string().required(),
+	}),
+})(PickupForm)
 
-  // we need to post the values from the form to the server
-  handleSubmit(values, { resetForm }) {
-    // console.log(formikBag.props);
-
-    axiosWithAuth()
-      .post('', values)
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.log(err.res.data);
-      });
-    // console.log(values);
-    resetForm();
-  },
-
-  validationSchema: Yup.object().shape({
-    name: Yup.string().required('You cannot pass!!!'),
-    date: Yup.string().required('You cannot pass!!!'),
-    time: Yup.string().required('Cannot pass'),
-    amount: Yup.string().required('You cannot pass!!!'),
-    quantity: Yup.string().required('You cannot pass!!!'),
-    type: Yup.string().required('You cannot pass!!!')
-  })
-})(PickupForm);
-
-export default PickupForm;
+export default FormikPickupForm;
