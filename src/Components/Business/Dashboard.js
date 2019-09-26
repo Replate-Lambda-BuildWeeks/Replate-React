@@ -1,11 +1,15 @@
 import React, {useState} from 'react';
 import LocationForm from "./LocationForm"
+import PickupForm from "./PickupForm"
 // import BusinessContext from './businessContext';
 
 const BusinessDashboard = () => {
 
     const [showmodal, setShowModal] = useState(false);
+    const [showmodalschedule, setShowModalSchedule] = useState(false);
+
     const [locations, setLocations] = useState([]);
+    const [schedules, setSchedules] = useState([]);
 
     const onClick = () => {
         setShowModal(true)
@@ -13,7 +17,19 @@ const BusinessDashboard = () => {
     const onsubmit = (location) => {
         setShowModal(false)
         setLocations([...locations, location])
+       
     }
+
+    const onClickschedule = () => {
+        setShowModalSchedule(true)
+    }
+    const onsubmitschedule = (schedule) => {
+
+        setShowModalSchedule(false)
+        setSchedules([...schedules, schedule])
+    }
+
+
     return (
         <div className='dashboard'>
             <h1 className='dashboard-header'>Stripe</h1>
@@ -27,7 +43,7 @@ const BusinessDashboard = () => {
                     <div className="location-text">
                     <p className='location-address'>{location.address}
                     <br />
-                    {location.state}
+                    {location.state},
                     {location.city} {location.zip}</p>
                     </div>
                 </div>
@@ -39,19 +55,24 @@ const BusinessDashboard = () => {
             </div>
             <div className='dashboard-section'>
             <h3 className='dashboard-subheader'>Scheduled Pickups</h3>
-            <button className='dashboard-button'>+ Create a Pickup</button>
+            <button onClick={onClickschedule} className='dashboard-button'>+ Create a Pickup</button>
+            {showmodalschedule && <PickupForm onsubmit={onsubmitschedule} />}
             </div>
             <div className='dashboard-section'>
             <h3 className='dashboard-subheader'>Next Week's Schedule</h3>
 
-            <div className="week-schedule">
-                <div className="day-schedule">
+            {schedules.map((schedule, index) => (
+
+            <div className="week-schedule" >
+                <div className="day-schedule" key={index}>
                     <div className='day-schedule__date'>September 23, 2019</div>
                
                 <div className='day-schedule__pickup'>
                         <div className="pickup-info">
-                            <div className="pickup-time-amount">4:00 PM - 10 lbs</div>
-                            <div className="pickup-type">Chicken and steak</div>
+                            <div className="pickup-time-amount">{schedule.time}
+                    {schedule.amount}
+                    </div>
+                            <div className="pickup-type">{schedule.type} </div>
                         </div>
                     </div>
                     </div>
@@ -68,10 +89,14 @@ const BusinessDashboard = () => {
                     <div className='day-schedule__date'>September 27, 2019</div>
                 </div>
                 </div>
+            ))
+            }
             </div>
             
+        
         </div>
     )
+
 }
 
 export default BusinessDashboard

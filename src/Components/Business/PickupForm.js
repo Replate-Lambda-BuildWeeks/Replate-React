@@ -7,11 +7,7 @@ import * as Yup from 'yup';
 const PickupForm = props => {
 
     
-    const { appointments, setAppointments } = useContext();
-
-    const id = props.match.params.id;
-    const { status } = props;
-    const [locations, setLocations] = useState([]);
+  
   
 
     // useEffect(() => {
@@ -63,9 +59,12 @@ const FormikPickupForm = withFormik({
 		date: Yup.string().required(),
         time: Yup.string().required(),
         amount: Yup.string().required(),
-        quantity: Yup.string().required(),
+
         type: Yup.string().required(),
-	}),
+    }),
+    handleSubmit: (value, {props}) => {
+        props.onsubmit(value);
+    }
 })(PickupForm)
 
 export default FormikPickupForm;
