@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { withFormik, Form, Field } from "formik";
-import * as Yup from "yup";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import { withFormik, Form, Field } from 'formik';
+import * as Yup from 'yup';
+import axios from 'axios';
 
 // function validatePhone(value){
 //     let error;
@@ -21,7 +21,11 @@ const VolOnboardForm = ({ errors, status, validateForm }) => {
     if (status) {
       setVolunteer([...volunteer, status]);
     }
+<<<<<<< HEAD:src/Components/CreateAccount Components/VolunteerCreateAccount.js
   }, [setVolunteer, status]);
+=======
+  }, [volunteer, status]);
+>>>>>>> 25078f2c57040e8162ed2ef83de73d6a7707a614:src/Components/VolunteerCreateAccount.js
 
   return (
     <div>
@@ -43,8 +47,12 @@ const VolOnboardForm = ({ errors, status, validateForm }) => {
             <Field
               type="text"
               name="phone"
+<<<<<<< HEAD:src/Components/CreateAccount Components/VolunteerCreateAccount.js
               placeholder={errors.phone}
               className="errors"
+=======
+              placeholder="xxx-xxx-xxxx"
+>>>>>>> 25078f2c57040e8162ed2ef83de73d6a7707a614:src/Components/VolunteerCreateAccount.js
               //   validate={validatePhone}
             />
           </div>
@@ -87,9 +95,13 @@ const VolOnboardForm = ({ errors, status, validateForm }) => {
         </div>
         <button
           type="submit"
+<<<<<<< HEAD:src/Components/CreateAccount Components/VolunteerCreateAccount.js
           onClick={() =>
             validateForm().then(() => console.log("Volunteer Form Submitted"))
           }
+=======
+          onClick={() => validateForm().then(() => console.log('blah'))}
+>>>>>>> 25078f2c57040e8162ed2ef83de73d6a7707a614:src/Components/VolunteerCreateAccount.js
         >
           Submit
         </button>
@@ -108,16 +120,26 @@ const FormikVolOnboardForm = withFormik({
     confirmPassword
   }) {
     return {
+<<<<<<< HEAD:src/Components/CreateAccount Components/VolunteerCreateAccount.js
       volunteer_name: volunteer_name || "",
       phone: phone || "",
       email: email || "",
       username: username || "",
       password: password || "",
       confirmPassword: confirmPassword || ""
+=======
+      firstName: firstName || '',
+      lastName: lastName || '',
+      phone: phone || '',
+      email: email || '',
+      password: password || '',
+      confirmPassword: confirmPassword || ''
+>>>>>>> 25078f2c57040e8162ed2ef83de73d6a7707a614:src/Components/VolunteerCreateAccount.js
     };
   },
 
   validationSchema: Yup.object().shape({
+<<<<<<< HEAD:src/Components/CreateAccount Components/VolunteerCreateAccount.js
     volunteer_name: Yup.string().required("*Required field"),
     phone: Yup.string().required("*Required field"),
     email: Yup.string()
@@ -126,14 +148,28 @@ const FormikVolOnboardForm = withFormik({
     username: Yup.string().required("*Required field"),
     password: Yup.string().required("*Required field"),
     confirmPassword: Yup.string().required("*Required field")
+=======
+    firstName: Yup.string().required('*Required field'),
+    lastName: Yup.string().required('*Required field'),
+    phone: Yup.string().required('*Required field'),
+    email: Yup.string()
+      .email('Invalid email')
+      .required('*Required field'),
+    password: Yup.string().required('*Required field'),
+    confirmPassword: Yup.string().required('*Required field')
+>>>>>>> 25078f2c57040e8162ed2ef83de73d6a7707a614:src/Components/VolunteerCreateAccount.js
   }),
 
   handleSubmit(values, { setStatus }) {
     axios
+<<<<<<< HEAD:src/Components/CreateAccount Components/VolunteerCreateAccount.js
       .post("http://0bbfee1e.ngrok.io/volunteers", values)
+=======
+      .post('http://0bbfee1e.ngrok.io/auth/login', values)
+>>>>>>> 25078f2c57040e8162ed2ef83de73d6a7707a614:src/Components/VolunteerCreateAccount.js
       .then(res => {
         setStatus(res.data);
-        console.log("VolOnboardForm POST request success:", res);
+        console.log('VolOnboardForm POST request success:', res);
       })
       .catch(err => console.log(err.res));
   }

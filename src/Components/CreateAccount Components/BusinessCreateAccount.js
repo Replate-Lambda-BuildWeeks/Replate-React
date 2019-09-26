@@ -1,9 +1,20 @@
-import React, { useState, useEffect } from "react";
-import { withFormik, Form, Field } from "formik";
-import * as Yup from "yup";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import { withFormik, Form, Field } from 'formik';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
+import * as Yup from 'yup';
+import axios from 'axios';
 
+<<<<<<< HEAD:src/Components/CreateAccount Components/BusinessCreateAccount.js
 const BusOnboardForm = ({ errors, status }) => {
+=======
+const BusOnboardForm = ({
+  values,
+  errors,
+  status,
+  validateForm,
+  FormikBag
+}) => {
+>>>>>>> 25078f2c57040e8162ed2ef83de73d6a7707a614:src/Components/BusinessCreateAccount.js
   const [business, setBusiness] = useState([]);
 
   //sets
@@ -19,6 +30,7 @@ const BusOnboardForm = ({ errors, status }) => {
         <h2>Create Business Account</h2>
         <div>
           <div>
+<<<<<<< HEAD:src/Components/CreateAccount Components/BusinessCreateAccount.js
             <label>Business Name</label>
             <Field
               type="text"
@@ -35,6 +47,22 @@ const BusOnboardForm = ({ errors, status }) => {
               placeholder={errors.contact_name}
               className="errors"
             />
+=======
+            <div>
+              <label>Business Name</label>
+              <Field type="text" name="restaurant_name" />
+              {errors.restaurant_name && (
+                <p className="errors">{errors.restaurant_name}</p>
+              )}
+            </div>
+          </div>
+          <div>
+            <label>Contact Name</label>
+            <Field type="text" name="username" />
+            {errors.contact_name && (
+              <p className="errors">{errors.contact_name}</p>
+            )}
+>>>>>>> 25078f2c57040e8162ed2ef83de73d6a7707a614:src/Components/BusinessCreateAccount.js
           </div>
           <div>
             <label>Street Address</label>
@@ -101,6 +129,7 @@ const BusOnboardForm = ({ errors, status }) => {
               className="errors"
             />
           </div>
+<<<<<<< HEAD:src/Components/CreateAccount Components/BusinessCreateAccount.js
           <div>
             <label>Confirm Password</label>
             <Field
@@ -117,6 +146,10 @@ const BusOnboardForm = ({ errors, status }) => {
         >
           Submit
         </button>
+=======
+        </div>
+        <button type="submit">Submit</button>
+>>>>>>> 25078f2c57040e8162ed2ef83de73d6a7707a614:src/Components/BusinessCreateAccount.js
       </Form>
     </div>
   );
@@ -131,6 +164,7 @@ const FormikBusOnboardForm = withFormik({
     zip,
     phone,
     email,
+<<<<<<< HEAD:src/Components/CreateAccount Components/BusinessCreateAccount.js
     username,
     password,
     confirmPassword
@@ -146,10 +180,24 @@ const FormikBusOnboardForm = withFormik({
       username: username || "",
       password: password || "",
       confirmPassword: confirmPassword || ""
+=======
+    password
+  }) {
+    return {
+      restaurant_name: restaurant_name || '',
+      contact_name: contact_name || '',
+      address: address || '',
+      city: city || '',
+      zip: zip || '',
+      phone: phone || '',
+      email: email || '',
+      password: password || ''
+>>>>>>> 25078f2c57040e8162ed2ef83de73d6a7707a614:src/Components/BusinessCreateAccount.js
     };
   },
 
   validationSchema: Yup.object().shape({
+<<<<<<< HEAD:src/Components/CreateAccount Components/BusinessCreateAccount.js
     restaurant_name: Yup.string().required("*Required field"),
     contact_nameName: Yup.string().required("*Required field"),
     address: Yup.string().required("*Required field"),
@@ -170,8 +218,37 @@ const FormikBusOnboardForm = withFormik({
       .then(res => {
         setStatus(res.data);
         console.log("BusOnboardForm POST request success:", res);
+=======
+    name: Yup.string().required('*Required field'),
+    username: Yup.string().required('*Required field'),
+    address: Yup.string().required('*Required field'),
+    zip: Yup.string().required('*Required field'),
+    city: Yup.string().required('*Required field'),
+    phone: Yup.string().required('*Required field'),
+    email: Yup.string()
+      .email('Invalid email')
+      .required('*Required field'),
+    password: Yup.string().required('*Required field'),
+    confirmPassword: Yup.string().required('*Required field')
+  }),
+
+  handleSubmit(values, FormikBag) {
+    console.log(values);
+    // forwards the user to the profile page using the formikBag props
+    axiosWithAuth()
+      .post('/auth/register', values)
+      .then(response => {
+        console.log(response);
+        // sets token to local storage.
+        localStorage.setItem('token', response.data.token);
+        FormikBag.props.history.push('/dashboard');
+
+        // forwards the user to the profile page using the formikBag props
+>>>>>>> 25078f2c57040e8162ed2ef83de73d6a7707a614:src/Components/BusinessCreateAccount.js
       })
-      .catch(err => console.log(err.res));
+      .catch(err => {
+        console.log(err);
+      });
   }
 })(BusOnboardForm);
 

@@ -9,7 +9,7 @@ export const axiosWithAuth = () => {
   const token = localStorage.getItem('token');
 
   return axios.create({
-    baseURL: ' http://0d43ca75.ngrok.io/api',
+    baseURL: 'http://0bbfee1e.ngrok.io',
     headers: {
       authorization: token
     }

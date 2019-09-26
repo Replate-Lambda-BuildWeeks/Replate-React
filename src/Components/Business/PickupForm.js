@@ -1,11 +1,28 @@
-import React, { useState, useEffect } from "react";
-import { withFormik, Form, Field } from "formik";
+import React , { useState, useEffect, useContext } from "react";
+import { withFormik, Form, Field, } from "formik";
 import * as Yup from 'yup';
-
-
-
+// import axios from "axios";
 
 const PickupForm = props => {
+
+    
+
+    const id = props.match.params.id;
+    const { status } = props;
+    const [locations, setLocations] = useState([]);
+  
+
+    // useEffect(() => {
+    //     axios
+    //       .get()
+    //       .then(res => {
+    //         console.log(res.data);
+    //         setLocations(res.data);
+    //       })
+    //       .catch(err => console.log(err));
+    //   }, []);
+
+    
 
     return(
         <div className='new-pickup__modal'>
@@ -25,8 +42,8 @@ const PickupForm = props => {
                 <Field type='text' name='type' placeholder='Enter type of food' />
 
                 </div>
-                <button type='submit'>Update</button>
-                </div>
+                <button type='submit'>Submit</button> 
+                 </div> 
 
             </Form>
         </div>
@@ -43,13 +60,13 @@ const FormikPickupForm = withFormik({
         }
     },
     validationSchema : Yup.object().shape({
-        name: Yup.string().required('You cannot pass!!!'),
-		date: Yup.string().required('You cannot pass!!!'),
-        time: Yup.string().required('Cannot pass'),
-        amount: Yup.string().required('You cannot pass!!!'),
-        quantity: Yup.string().required('You cannot pass!!!'),
-        type: Yup.string().required('You cannot pass!!!'),
+        name: Yup.string().required(),
+		date: Yup.string().required(),
+        time: Yup.string().required(),
+        amount: Yup.string().required(),
+        quantity: Yup.string().required(),
+        type: Yup.string().required(),
 	}),
 })(PickupForm)
 
-export default PickupForm;
+export default FormikPickupForm;
