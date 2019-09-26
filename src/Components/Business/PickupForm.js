@@ -8,7 +8,7 @@ const PickupForm = props => {
 
     
 
-    const id = props.match.params.id;
+    // const id = props.match.params.id;
     const { status } = props;
     const [locations, setLocations] = useState([]);
   

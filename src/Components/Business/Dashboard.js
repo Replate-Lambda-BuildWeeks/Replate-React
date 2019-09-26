@@ -29,7 +29,25 @@ const BusinessDashboard = () => {
         setSchedules([...schedules, schedule])
     }
 
-//  change2
+    // const deleteLocation = item => {
+    //     axiosWithAuth()
+    //       .delete(``)
+    //       .then(res => {
+    //         console.log(res);
+    //         setLocations();
+    //       })
+    //       .catch(err => console.log(err));
+    //   };
+    //   const deleteSchedule = item => {
+    //     axiosWithAuth()
+    //       .delete(``)
+    //       .then(res => {
+    //         setSchedule();
+    //       })
+    //       .catch(err => console.log(err));
+    //   };
+
+
     return (
         <div className='dashboard'>
             <h1 className='dashboard-header'>Stripe</h1>
