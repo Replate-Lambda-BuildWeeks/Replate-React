@@ -1,13 +1,14 @@
 import React , { useState, useEffect, useContext } from "react";
 import { withFormik, Form, Field, } from "formik";
 import * as Yup from 'yup';
+
 // import axios from "axios";
 
 const PickupForm = props => {
 
     
 
-    const id = props.match.params.id;
+    // const id = props.match.params.id;
     const { status } = props;
     const [locations, setLocations] = useState([]);
   
@@ -31,18 +32,17 @@ const PickupForm = props => {
                 <h1 className='pickup-form__header'>Schedule A Pickup</h1>
                 <div className='pickup-form__fields'>
         
-                <Field type='text' name='name' placeholder='Enter name' />
         
-                <Field type='text'  name='date' placeholder='Enter date' />
+                <Field className='pickup-form__field' type='text'  name='date' placeholder='Enter date' />
         
-                <Field type='text' name='time' placeholder='Enter time' />
+                <Field className='pickup-form__field' type='text' name='time' placeholder='Enter time' />
         
-                <Field type='text' name='amount' placeholder='Enter amount' />
+                <Field className='pickup-form__field' type='text' name='amount' placeholder='Enter amount' />
             
-                <Field type='text' name='type' placeholder='Enter type of food' />
+                <Field className='pickup-form__field' type='text' name='type' placeholder='Enter type of food' />
 
                 </div>
-                <button type='submit'>Submit</button> 
+                <button className='pickup-form__submit' type='submit'>Submit</button> 
                  </div> 
 
             </Form>
@@ -50,9 +50,8 @@ const PickupForm = props => {
     )
 }
 const FormikPickupForm = withFormik({
-    mapPropsToValues({ name, date, time, amount, type }) {
+    mapPropsToValues({ date, time, amount, type }) {
         return {
-            name: name || '',
             date: date || '',
             time: time || '',
             amount: amount || '',
@@ -60,13 +59,16 @@ const FormikPickupForm = withFormik({
         }
     },
     validationSchema : Yup.object().shape({
-        name: Yup.string().required(),
 		date: Yup.string().required(),
         time: Yup.string().required(),
         amount: Yup.string().required(),
-        quantity: Yup.string().required(),
+
         type: Yup.string().required(),
-	}),
+    }),
+    handleSubmit: (value, {props}) => {
+        console.log(props, "handleSubmitprops")
+        props.onsubmit(value);
+    }
 })(PickupForm)
 
 export default FormikPickupForm;
