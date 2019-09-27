@@ -26,6 +26,8 @@ const Login = props => {
         console.log(res);
         //sets token to local storage.
         localStorage.setItem('token', res.data.token);
+        //Ari added the line below to access for VolunteerDashboard
+        localStorage.setItem('id', res.data.id);
         // forwards the user to the profile page using the  props
         props.history.push('/business-onboard');
       })
