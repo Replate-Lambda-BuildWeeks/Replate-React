@@ -60,7 +60,9 @@ const FormikLocationForm = withFormik({
         state: Yup.string().required(),
         zip: Yup.string().required(),
     }),
-    
+    handleSubmit: (value, {props}) => {
+        props.onsubmit(value);
+    }
 })(LocationForm)
 
 export default FormikLocationForm;

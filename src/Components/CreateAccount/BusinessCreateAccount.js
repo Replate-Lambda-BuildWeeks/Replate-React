@@ -18,7 +18,7 @@ const BusOnboardForm = ({
     if (status) {
       setBusiness([...business, status]);
     }
-  }, [setBusiness, status]);
+  }, [business, setBusiness, status]);
 
   return (
     <div>
@@ -71,7 +71,7 @@ const BusOnboardForm = ({
             <Field
               type="text"
               name="phone"
-              placeholder="xxx-xxx-xxxx"
+              placeholder={errors.phone}
               className="errors"
               //   validate={validatePhone}
             />
@@ -158,6 +158,7 @@ const FormikBusOnboardForm = withFormik({
   }),
 
   handleSubmit(values, { setStatus }) {
+    delete values.confirmPassword;
     axios
       .post('http://0bbfee1e.ngrok.io/restaurants', values)
       .then(res => {
