@@ -1,18 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Card, CardTitle, CardSubtitle, Button } from "reactstrap";
+import axios from "axios";
 
-export default function ScheduledPickupCards({ quantity, food, date, time }) {
-    // function formatDate(){
-    //     const formated = "";
+export default function ScheduledPickupCards(pickup) {
+  console.log("Scheduled Pickup", pickup);
 
-    //     return()
-    // }
   return (
     <div className="pickupCard">
       <Card>
-        <CardTitle>{`${date} at ${time}`}</CardTitle>
-        {/* <CardSubtitle>{`Business Name here ->` + name}</CardSubtitle> */}
-        <CardSubtitle>{`${quantity} of ${food}`}</CardSubtitle>
+        <CardTitle>{`${pickup.date} at ${pickup.time}`}</CardTitle>
+        {/* <CardSubtitle>{pickup.restaurant_name}</CardSubtitle> */}
+        <CardSubtitle>{`${pickup.quantity} of ${pickup.food}`}</CardSubtitle>
         <Button type="submit">Edit</Button>
         <Button type="submit">Delete</Button>
       </Card>
