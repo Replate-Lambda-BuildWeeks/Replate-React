@@ -108,7 +108,7 @@ export default function VolunteerDashboard() {
       <div className="volDash-section">
         <h3 className="volDash-h3">Available Pickups</h3>
         <div className="volDash-day-schedule__pickup">
-
+          {/* 
 { if (isEmpty(availableArray)) {
     return(<div>None</div>)
   } else{ return (<AvailablePickupCards
@@ -117,10 +117,9 @@ export default function VolunteerDashboard() {
   setAvailable={setAvailable}
   setScheduled={setScheduled}
 />) }
-  }
+  } */}
 
-
-            {/* {availableArray.map(p=> {
+          {/* {availableArray.map(p=> {
               if (isEmptyChildren){
                 return(<div>None</div>)
               } else{ return <AvailablePickupCards
@@ -131,7 +130,7 @@ export default function VolunteerDashboard() {
             /> }
               })} */}
 
-          {availableArray.map(p =>  (
+          {availableArray.map(p => (
             <AvailablePickupCards
               key={p.id}
               {...p}
