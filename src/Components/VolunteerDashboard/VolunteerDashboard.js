@@ -9,16 +9,33 @@ export default function VolunteerDashboard() {
   const id = localStorage.getItem("id");
   console.log(id);
 
+  const [available, setAvailable] = useState([]);
+  const [scheduled, setScheduled] = useState([]);
   const [pickup, setPickup] = useState([]); //holding pickup data
   const [volunteer, setVolunteer] = useState(["Volunteer"]); // state volunteer name
-  const [address, setAddress] = useState([]); // state holding business address
+  const [restaurants, setRestaurants] = useState([]); // state holding business address
   // const id = props.match.params.id;
   //axios call for volunteer name
+
+  useEffect(() => {
+    axios
+      .get("http://0bbfee1e.ngrok.io/pickups/")
+      .then(res => {
+        const scheduledPickups = res.data.filter(p => p.volunteer_id === id);
+        setScheduled(scheduledPickups);
+        const avilablePickups = res.data.filter(p => p.volunteer_id === id);
+        setAvailable(avilablePickups);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
+
   useEffect(() => {
     const id = window.localStorage.getItem("id");
     console.log(id);
     axios
-      .get(`http://0bbfee1e.ngrok.io/volunteers/1`)
+      .get(`http://0bbfee1e.ngrok.io/volunteers/${id}`)
       .then(res => {
         //console.log(res.data);
         setVolunteer(res.data);
@@ -35,12 +52,11 @@ export default function VolunteerDashboard() {
       .then(res => {
         console.log(res.data);
         setPickup(res.data);
-        return console.log("this is pickup", pickup);
       })
       .catch(err => {
         console.log(err);
       });
-  }, [setPickup]);
+  }, [available, scheduled]);
 
   //axios call for business address
   useEffect(() => {
@@ -48,12 +64,12 @@ export default function VolunteerDashboard() {
       .get("http://0bbfee1e.ngrok.io/restaurants/")
       .then(res => {
         console.log(res.data);
-        setAddress(res.data);
+        setRestaurants(res.data);
       })
       .catch(err => {
         console.log(err);
       });
-  }, [setAddress]);
+  }, [setRestaurants]);
 
   return (
     <div className="volDash-container">
@@ -72,35 +88,54 @@ export default function VolunteerDashboard() {
           <button className="volDash-button">Claim a Pickup</button>
         </div>
       </div>
-      <div className="volDash-section">
-        <h3 className="volDash-h3">Your Scheduled Pickups</h3>
-        <div className="volDash-day-schedule__pickup">
-          {pickup.map(p => {
-            if (p.volunteer_id === volunteer.id) {
-              // spread each of the pickup values as props into a card component:
+
+      <h3 className="volDash-h3">Your Scheduled Pickups</h3>
+      <div className="volDash-day-schedule__pickup">
+        <div>
+          {/* {pickup.map(p => (
+            <div>{JSON.stringify(p.volunteer_name)}</div>
+          ))} */}
+          {pickup.map(p => (
+            <div>{p.food} {p.volunteer_id}</div>
+          ))}
+        </div>
+        {pickup.map(p => 
+            p.volunteer_id === id && <ScheduledPickupCards key={p.id} {...p} />
+        )}
+
+        {/* {
               console.log(p.volunteer_id);
               // console.log(p);
               return <ScheduledPickupCards key={p.id} {...p} />;
-            } else if (p.volunteer_id != null) {
+            } else if (p.volunteer_id === null) {
               // console.log(volunteer.id);
               // console.log(p.volunteer_id);
               return null;
             }
-          })}
-        </div>
+          )} */}
       </div>
+
       <div className="volDash-section">
         <h3 className="volDash-h3">Available Pickups</h3>
         <div className="volDash-day-schedule__pickup">
           {pickup.map(p => {
-            if (p.volunteer_id === null) {
-              // spread each of the pickup values as props into a card component:
-              console.log(p);
-              return <AvailablePickupCards key={p.id} {...p} />;
-            }
-            if (p.volunteer_id != null) {
-              return null;
-            }
+            return p.volunteer_id === id ? (
+              <ScheduledPickupCards
+                key={p.id}
+                {...p}
+                setAvailable={setAvailable}
+                setScheduled={setScheduled}
+              />
+            ) : p.volunteer_id === null ? (
+              <AvailablePickupCards
+                key={p.id}
+                {...p}
+                setAvailable={setAvailable}
+                setScheduled={setScheduled}
+              />
+            ) : (
+              <div>None</div>
+            );
           })}
         </div>
       </div>

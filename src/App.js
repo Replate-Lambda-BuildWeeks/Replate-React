@@ -17,12 +17,12 @@ function App() {
     <div className="App">
       {/* <Route exact path="/login" render={props => <Login {...props} />} /> */}
       {/* <PickupForm/> */}
-      {/* <VolunteerDashboard/> */}
+      <VolunteerDashboard/>
       {/* <UserType/> */}
       <Switch>
         {/* <Home /> */}
 
-        <Route exact path="/" render={props => <Login {...props} />} />
+        {/* <Route exact path="/" render={props => <Login {...props} />} /> */}
         {/* <VolunteerState /> */}
         {/* <PickupForm /> */}
         <Private exact path="/business-onboard" component={BusOnboardForm} />
