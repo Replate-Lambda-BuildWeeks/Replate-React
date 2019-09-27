@@ -1,13 +1,14 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ScheduledPickupCards from "./ScheduledPickupCards";
 import AvailablePickupCards from "./AvailablePickupCards";
 import logo from "../../images/logo.png";
 import userImage from "../../images/userImage.jpg";
+import { isEmptyChildren } from "formik";
 
 export default function VolunteerDashboard() {
   const id = localStorage.getItem("id");
-  console.log(id);
+  // console.log(id);
 
   const [available, setAvailable] = useState([]);
   const [scheduled, setScheduled] = useState([]);
@@ -33,7 +34,7 @@ export default function VolunteerDashboard() {
 
   useEffect(() => {
     const id = window.localStorage.getItem("id");
-    console.log(id);
+    // console.log(id);
     axios
       .get(`http://0bbfee1e.ngrok.io/volunteers/${id}`)
       .then(res => {
@@ -50,7 +51,7 @@ export default function VolunteerDashboard() {
     axios
       .get("http://0bbfee1e.ngrok.io/pickups")
       .then(res => {
-        console.log(res.data);
+        console.log("Pickup call data", res.data);
         setPickup(res.data);
       })
       .catch(err => {
@@ -63,13 +64,19 @@ export default function VolunteerDashboard() {
     axios
       .get("http://0bbfee1e.ngrok.io/restaurants/")
       .then(res => {
-        console.log(res.data);
+        console.log("Resaurant info", res.data);
         setRestaurants(res.data);
       })
       .catch(err => {
         console.log(err);
       });
   }, [setRestaurants]);
+
+  const scheduledArray = pickup.filter(p => p.volunteer_id === 1);
+  console.log("scheduled: ", scheduled);
+
+  const availableArray = pickup.filter(p => p.volunteer_id == null);
+  console.log("available: ", available);
 
   return (
     <div className="volDash-container">
@@ -92,51 +99,46 @@ export default function VolunteerDashboard() {
       <h3 className="volDash-h3">Your Scheduled Pickups</h3>
       <div className="volDash-day-schedule__pickup">
         <div>
-          {/* {pickup.map(p => (
-            <div>{JSON.stringify(p.volunteer_name)}</div>
-          ))} */}
-          {pickup.map(p => (
-            <div>{p.food} {p.volunteer_id}</div>
+          {scheduledArray.map(p => (
+            <ScheduledPickupCards key={p.id} {...p} />
           ))}
         </div>
-        {pickup.map(p => 
-            p.volunteer_id === id && <ScheduledPickupCards key={p.id} {...p} />
-        )}
-
-        {/* {
-              console.log(p.volunteer_id);
-              // console.log(p);
-              return <ScheduledPickupCards key={p.id} {...p} />;
-            } else if (p.volunteer_id === null) {
-              // console.log(volunteer.id);
-              // console.log(p.volunteer_id);
-              return null;
-            }
-          )} */}
       </div>
 
       <div className="volDash-section">
         <h3 className="volDash-h3">Available Pickups</h3>
         <div className="volDash-day-schedule__pickup">
-          {pickup.map(p => {
-            return p.volunteer_id === id ? (
-              <ScheduledPickupCards
-                key={p.id}
-                {...p}
-                setAvailable={setAvailable}
-                setScheduled={setScheduled}
-              />
-            ) : p.volunteer_id === null ? (
-              <AvailablePickupCards
-                key={p.id}
-                {...p}
-                setAvailable={setAvailable}
-                setScheduled={setScheduled}
-              />
-            ) : (
-              <div>None</div>
-            );
-          })}
+
+{ if (isEmpty(availableArray)) {
+    return(<div>None</div>)
+  } else{ return (<AvailablePickupCards
+  key={p.id}
+  {...p}
+  setAvailable={setAvailable}
+  setScheduled={setScheduled}
+/>) }
+  }
+
+
+            {/* {availableArray.map(p=> {
+              if (isEmptyChildren){
+                return(<div>None</div>)
+              } else{ return <AvailablePickupCards
+              key={p.id}
+              {...p}
+              setAvailable={setAvailable}
+              setScheduled={setScheduled}
+            /> }
+              })} */}
+
+          {availableArray.map(p =>  (
+            <AvailablePickupCards
+              key={p.id}
+              {...p}
+              setAvailable={setAvailable}
+              setScheduled={setScheduled}
+            />
+          ))}
         </div>
       </div>
     </div>
