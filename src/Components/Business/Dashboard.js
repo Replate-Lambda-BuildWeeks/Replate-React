@@ -10,14 +10,29 @@ const BusinessDashboard = () => {
 
     const [locations, setLocations] = useState([]);
     const [schedules, setSchedules] = useState([]);
+    const [locationtoedit, setLocationToEdit] = useState(null);
 
     const onClick = () => {
         setShowModal(true)
     }
-    const onsubmit = (location) => {
-        console.log(location)
+    const onsubmit = (newlocation) => {
+            const newLocations = locations.map((location) => {
+                if (location === locationtoedit) {
+                    return(newlocation)
+                } else {
+                    return(location)
+                }
+            })
+
+            if (
+                !locationtoedit
+            ) {
+                newLocations.push(newlocation)
+            }
+
         setShowModal(false)
-        setLocations([...locations, location])
+        setLocations(newLocations)
+        setLocationToEdit(null) 
        
     }
 
@@ -30,23 +45,21 @@ const BusinessDashboard = () => {
         setSchedules([...schedules, schedule])
     }
 
-    // const deleteLocation = item => {
-    //     axiosWithAuth()
-    //       .delete(``)
-    //       .then(res => {
-    //         console.log(res);
-    //         setLocations();
-    //       })
-    //       .catch(err => console.log(err));
-    //   };
-    //   const deleteSchedule = item => {
-    //     axiosWithAuth()
-    //       .delete(``)
-    //       .then(res => {
-    //         setSchedule();
-    //       })
-    //       .catch(err => console.log(err));
-    //   };
+    const deleteLocation = (index) => {
+        const newLocations = (locations.filter((location, idx) => idx !== index))
+        setLocations(newLocations);
+    }
+
+    const deleteSchedule = (index) => {
+        const newSchedules = (schedules.filter((schedule, idx) => idx !== index))
+        setSchedules(newSchedules);
+    }
+
+    const editLocation = (index) => {
+        const loc = locations[index] 
+        setLocationToEdit(loc)
+        setShowModal(true)
+    }
 
 
     return (
@@ -64,13 +77,14 @@ const BusinessDashboard = () => {
                     <br />
                     {location.city},
                     {location.state} {location.zip}</p>
-                    {/* <button onClick={() => deleteLocation()} className='dashboard-delete'>Delete</button> */}
+                    <button onClick={() => deleteLocation(index)} className='dashboard-delete'>Delete</button>
+                    <button onClick={() => editLocation(index)} className='dashboard-delete'>Edit</button>
                     </div>
                 </div>
             ))
             }
                 <button onClick={onClick} className='dashboard-button add-location__button'>Add New Location</button>
-                {showmodal && <LocationForm onsubmit={onsubmit} />}
+                {showmodal && <LocationForm {...locationtoedit} onsubmit={onsubmit} />}
             </div>
             </div>
             <div className='dashboard-section'>
@@ -91,6 +105,7 @@ const BusinessDashboard = () => {
                         <div className="pickup-info">
                             <div className="pickup-time-amount">{schedule.time}
                     {schedule.amount}
+                    <button onClick={() => deleteSchedule(index)} className='dashboard-delete'>Delete</button>
                     </div>
                             <div className="pickup-type">{schedule.type} </div>
                         </div>
