@@ -1,18 +1,13 @@
 import React , { useState, useEffect, useContext } from "react";
 import { withFormik, Form, Field, } from "formik";
 import * as Yup from 'yup';
-
 // import axios from "axios";
 
 const PickupForm = props => {
-
-    
-
     const id = props.match.params.id;
     const { status } = props;
     const [locations, setLocations] = useState([]);
   
-
     // useEffect(() => {
     //     axios
     //       .get()
