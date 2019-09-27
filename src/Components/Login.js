@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import Logo from '../../src/logo.png';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 //adding the useState hook to add component level state
 const Login = props => {
@@ -20,8 +21,8 @@ const Login = props => {
 
   const onSubmit = e => {
     e.preventDefault();
-    axiosWithAuth()
-      .post('/auth/login', user)
+    axios
+      .post('http://0bbfee1e.ngrok.io/auth/login', user)
       .then(res => {
         console.log(res);
         //sets token to local storage.
@@ -29,7 +30,7 @@ const Login = props => {
         //Ari added the line below to access for VolunteerDashboard
         localStorage.setItem('id', res.data.id);
         // forwards the user to the profile page using the  props
-        props.history.push('/business-onboard');
+        props.history.push('/dashboard');
       })
       .catch(err => {
         console.log(err);
@@ -39,7 +40,7 @@ const Login = props => {
 
   return (
     <div className="login-form">
-      <img src={Logo} alt="replate logo" />
+      <img className="center" src={Logo} alt="replate logo" />
 
       <form onSubmit={onSubmit} className="container form-width">
         <div className="form-group">
@@ -70,7 +71,7 @@ const Login = props => {
         <input type="submit" value="Sign in" className="btn btn-success" />
       </form>
       <p>Don't have an account?</p>
-      <Link to="/volunteer-onboard">Sign Up</Link>
+      <Link to="/create-account">Sign Up</Link>
     </div>
   );
 };

@@ -20,7 +20,8 @@ import Dashboard from './Components/Business/Dashboard';
 import { Route, Switch } from 'react-router-dom';
 import Private from '../src/utils/PrivateRoute';
 import Login from './Components/Login';
-import VolunteerDashboard from './Components/VolunteerDashboard/VolunteerDashboard'
+import CreateAccount from './Components/CreateAccount/CreateAccount';
+import VolunteerDashboard from './Components/VolunteerDashboard/VolunteerDashboard';
 import VolunteerState from './context/volunteer/VolunteerState';
 import BusinessContext from './context/business/businessContext';
 
@@ -39,15 +40,11 @@ function App() {
         {/* <Route exact path="/" render={props => <Login {...props} />} /> */}
         {/* <VolunteerState /> */}
         {/* <PickupForm /> */}
-        <Private exact path="/business-onboard" component={BusOnboardForm} />
-       
-        <Private
-          exact
-          path="/volunteer-onboard"
-          component={VolunteerCreateAccount}
-        />
+        {/* <Route exact path="/business-onboard" component={BusOnboardForm} /> */}
 
-        <Route exact path="/dashboard" component={Dashboard} />
+        <Route exact path="/create-account" component={CreateAccount} />
+
+        <Private exact path="/dashboard" component={Dashboard} />
       </Switch>
     </div>
   );

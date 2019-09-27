@@ -74,15 +74,6 @@ const VolOnboardForm = ({ errors, status, validateForm }) => {
               className="errors"
             />
           </div>
-          <div>
-            <label>Confirm Password</label>
-            <Field
-              type="password"
-              name="confirmPassword"
-              placeholder={errors.password}
-              className="errors"
-            />
-          </div>
         </div>
         <button
           type="submit"
@@ -105,33 +96,32 @@ const FormikVolOnboardForm = withFormik({
     confirmPassword
   }) {
     return {
-      volunteer_name: volunteer_name || "",
-      phone: phone || "",
-      email: email || "",
-      username: username || "",
-      password: password || "",
-      confirmPassword: confirmPassword || ""
+      volunteer_name: volunteer_name || '',
+      phone: phone || '',
+      email: email || '',
+      username: username || '',
+      password: password || ''
     };
   },
 
   validationSchema: Yup.object().shape({
-    volunteer_name: Yup.string().required("*Required field"),
-    phone: Yup.string().required("*Required field"),
+    volunteer_name: Yup.string().required('*Required field'),
+    phone: Yup.string().required('*Required field'),
     email: Yup.string()
-      .email("Invalid email")
-      .required("*Required field"),
-    username: Yup.string().required("*Required field"),
-    password: Yup.string().required("*Required field"),
-    confirmPassword: Yup.string().required("*Required field")
+      .email('Invalid email')
+      .required('*Required field'),
+    username: Yup.string().required('*Required field'),
+    password: Yup.string().required('*Required field')
   }),
 
   handleSubmit(values, { setStatus }) {
     axios
-      .post("http://0bbfee1e.ngrok.io/volunteers", values)
+      .post('http://0bbfee1e.ngrok.io/volunteers', values)
       .then()
-      .catch()
+      .catch();
 
-      axios.post('http://0bbfee1e.ngrok.io/auth/login', values)
+    axios
+      .post('http://0bbfee1e.ngrok.io/auth/register', values)
       .then(res => {
         setStatus(res.data);
         console.log('VolOnboardForm POST request success:', res);
