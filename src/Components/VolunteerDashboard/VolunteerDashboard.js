@@ -73,7 +73,7 @@ export default function VolunteerDashboard() {
         </div>
       </div>
       <div className="volDash-section">
-        <h3>Your Scheduled Pickups</h3>
+        <h3 className="volDash-h3">Your Scheduled Pickups</h3>
         <div className="volDash-day-schedule__pickup">
           {pickup.map(p => {
             if (p.volunteer_id === volunteer.id) {
@@ -90,7 +90,7 @@ export default function VolunteerDashboard() {
         </div>
       </div>
       <div className="volDash-section">
-        <h3>Available Pickups</h3>
+        <h3 className="volDash-h3">Available Pickups</h3>
         <div className="volDash-day-schedule__pickup">
           {pickup.map(p => {
             if (p.volunteer_id === null) {

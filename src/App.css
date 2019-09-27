@@ -81,6 +81,21 @@ button {
   justify-content: flex-start;
   align-content: center;
   align-items: center;
+  
+}
+
+.volDash-section {
+  /* display: flex;
+  justify-content: flex-start;
+  align-content: center;
+  align-items: center; */
+  border-bottom: 3px solid #282c34;
+}
+
+.volDash-h3 {
+  border-bottom: 0.5px solid #282c34;
+  padding: 5px;
+  margin: 5px 0 0;
 }
 
 .volDash-UserClaimSection {
@@ -88,6 +103,7 @@ button {
   justify-content: space-between;
   align-content: center;
   align-items: center;
-  border-bottom: 1p red solid;
-  border-top: 1p red solid;
+  border-bottom: 3px solid #282c34;
+  border-top: 3px solid #282c34;
+  background-color: lightgray;
 }
