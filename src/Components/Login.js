@@ -26,11 +26,17 @@ const Login = props => {
       .then(res => {
         console.log(res);
         //sets token to local storage.
+        if (res.data.restaurant_name) {
+          localStorage.setItem('type', 'restaurant');
+        } else {
+          localStorage.setItem('type', 'volunteer');
+        }
+    
         localStorage.setItem('token', res.data.token);
         //Ari added the line below to access for VolunteerDashboard
         localStorage.setItem('id', res.data.id);
         // forwards the user to the profile page using the  props
-        props.history.push('/dashboard');
+        props.history.push(`/${localStorage.getItem('type')}`);
       })
       .catch(err => {
         console.log(err);

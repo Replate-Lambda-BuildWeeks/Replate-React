@@ -28,23 +28,21 @@ import BusinessContext from './context/business/businessContext';
 function App() {
   return (
     <div className="App">
-      {/* <Route exact path="/login" render={props => <Login {...props} />} /> */}
       {/* <PickupForm/> */}
-      <VolunteerDashboard/>
+      {/* <VolunteerDashboard/> */}
       {/* <UserType/> */}
       <Switch>
         {/* <Home /> */}
-        <BusinessDashboard />
+        {/* <BusinessDashboard /> */}
         <Route exact path="/" render={props => <Login {...props} />} />
-
+        <Route path="/volunteer" component={VolunteerDashboard} />
+        <Route path="/restaurant" component={BusinessDashboard} />
+        <Route exact path="/create-account" component={CreateAccount} />
         {/* <Route exact path="/" render={props => <Login {...props} />} /> */}
         {/* <VolunteerState /> */}
         {/* <PickupForm /> */}
         {/* <Route exact path="/business-onboard" component={BusOnboardForm} /> */}
-
-        <Route exact path="/create-account" component={CreateAccount} />
-
-        <Private exact path="/dashboard" component={Dashboard} />
+        {/* <Private exact path="/dashboard" component={Dashboard} /> */}
       </Switch>
     </div>
   );
