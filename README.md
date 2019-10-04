@@ -15,4 +15,5 @@
   <li>Allow volunteers to be notified when a food pickup request is posted.</li>
   <li>Have a third user type, a non profit that can sign up to accept deliveries with posted hours of acceptance.</li>
   <li>React App Potential Design File</li>
+  <li>Heymi says to add onions</li>
 </ol>
