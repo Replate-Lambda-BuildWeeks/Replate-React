@@ -16,3 +16,6 @@
   <li>Have a third user type, a non profit that can sign up to accept deliveries with posted hours of acceptance.</li>
   <li>React App Potential Design File</li>
 </ol>
+
+
+<h3>Tech Stack: React, Formik, Yup, Bootstrap</h3>
